@@ -2,6 +2,9 @@
     min-height: 100vh;
     background: #f3f5f7;
     color: #111827;
+    --header-height: 73px;
+    --page-layout-top-padding: 22px;
+    --sidebar-sticky-top: calc(var(--header-height) + var(--page-layout-top-padding));
 }
 
 .pageLayout {
@@ -10,7 +13,7 @@
     gap: 24px;
     max-width: 1320px;
     margin: 0 auto;
-    padding: 22px 20px 40px;
+    padding: var(--page-layout-top-padding) 20px 40px;
 }
 
 .pageLayoutHome {
@@ -29,8 +32,13 @@
 }
 
 @media (max-width: 900px) {
+    .app {
+        --header-height: 65px;
+        --page-layout-top-padding: 16px;
+    }
+
     .pageLayout {
         display: block;
-        padding-top: 16px;
+        padding-top: var(--page-layout-top-padding);
     }
 }

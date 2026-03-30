@@ -1,6 +1,6 @@
 .sidebar {
     position: sticky;
-    top: 92px;
+    top: var(--sidebar-sticky-top);
     align-self: start;
     background: #ffffff;
     border: 1px solid #e5e7eb;
