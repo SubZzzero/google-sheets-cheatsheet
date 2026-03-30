@@ -19,6 +19,7 @@ export const Header = ({ showMenu, isSidebarOpen, onMenuClick }) => {
                 ) : null}
 
                 <img className={s.logo} src="/logo.png" alt="Логотип Google Sheets" />
+                <span className={s.productName}>Google Sheets Cheatsheet</span>
             </div>
         </header>
     );

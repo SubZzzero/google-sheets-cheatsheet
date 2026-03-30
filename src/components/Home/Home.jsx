@@ -6,7 +6,6 @@ export const Home = ({ categories, onSelectCategory }) => {
     return (
         <section className={s.home}>
             <header className={s.hero}>
-                <p className={s.badge}>Google Sheets Cheatsheet</p>
                 <h1 className={s.title}>Быстро находите нужные формулы и сразу применяйте их в работе</h1>
                 <p className={s.description}>
                     Это шпаргалка по функциям Google Sheets. Здесь можно быстро понять,

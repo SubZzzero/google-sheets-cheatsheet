@@ -8,7 +8,13 @@ import { formulas } from './data/formulas';
 
 function App() {
   const categories = useMemo(() => {
-    return [...new Set(formulas.map((item) => item.category))];
+    const uniqueCategories = [...new Set(formulas.map((item) => item.category))];
+
+    if (!uniqueCategories.includes('Базовые')) {
+      return uniqueCategories;
+    }
+
+    return ['Базовые', ...uniqueCategories.filter((category) => category !== 'Базовые')];
   }, []);
 
   const categoriesWithCount = useMemo(

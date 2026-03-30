@@ -12,19 +12,6 @@
     box-shadow: 0 10px 24px rgba(15, 23, 42, 0.06);
 }
 
-.badge {
-    display: inline-flex;
-    align-items: center;
-    border-radius: 999px;
-    border: 1px solid #b7e8ca;
-    background: #ffffff;
-    color: #0f7f55;
-    font-weight: 600;
-    font-size: 0.88rem;
-    padding: 4px 10px;
-    margin-bottom: 10px;
-}
-
 .title {
     font-size: clamp(1.8rem, 3vw, 2.5rem);
     line-height: 1.15;
