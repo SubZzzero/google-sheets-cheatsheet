@@ -1,0 +1,122 @@
+.card {
+    background: #ffffff;
+    border: 1px solid #dfe3e8;
+    border-radius: 14px;
+    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.05);
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.cardHeader {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.name {
+    font-size: clamp(1.5rem, 2vw, 2rem);
+    line-height: 1;
+    color: #16915f;
+    letter-spacing: 0.01em;
+}
+
+.copyButton {
+    border: 1px solid #cbd5e1;
+    border-radius: 10px;
+    background: #ffffff;
+    color: #111827;
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: 8px 12px;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.copyButton:hover {
+    background: #f8fafc;
+    border-color: #94a3b8;
+}
+
+.group {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.label {
+    font-size: 1.02rem;
+    font-weight: 700;
+    color: #111827;
+}
+
+.syntax {
+    display: block;
+    border-radius: 9px;
+    background: #f3f4f6;
+    color: #111827;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono',
+        'Courier New', monospace;
+    font-size: 0.95rem;
+    line-height: 1.45;
+    padding: 8px 10px;
+    overflow-x: auto;
+}
+
+.text {
+    color: #1f2937;
+    line-height: 1.45;
+}
+
+.exampleBlock {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border: 1px solid #dbe5f0;
+    border-radius: 12px;
+    background: #fbfcff;
+    padding: 10px;
+}
+
+.exampleSection {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.exampleSection:not(:last-child) {
+    padding-bottom: 8px;
+    border-bottom: 1px dashed #dbe5f0;
+}
+
+.exampleTitle {
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: #1f2937;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+}
+
+.variableList {
+    padding-left: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.variableItem {
+    color: #374151;
+    line-height: 1.4;
+}
+
+@media (max-width: 640px) {
+    .card {
+        padding: 14px;
+    }
+
+    .copyButton {
+        font-size: 0.88rem;
+        padding: 7px 10px;
+    }
+}
