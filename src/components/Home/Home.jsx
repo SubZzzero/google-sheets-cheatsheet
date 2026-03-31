@@ -1,5 +1,66 @@
 import s from './Home.module.css';
 
+const CATEGORY_META = {
+    'Базовые': {
+        icon: '🧮',
+        description: 'Сумма, среднее и другие ключевые функции для ежедневных задач.',
+    },
+    'Часто используемые': {
+        icon: '⭐',
+        description: 'Популярные формулы для отчётов, сводок и регулярной аналитики.',
+    },
+    Логические: {
+        icon: '🧠',
+        description: 'Условия, проверки и сценарии принятия решений в таблицах.',
+    },
+    Поиск: {
+        icon: '🔎',
+        description: 'Нахождение значений и связка данных между диапазонами.',
+    },
+    Текст: {
+        icon: '📝',
+        description: 'Обработка строк: разбор, объединение и форматирование текста.',
+    },
+    Данные: {
+        icon: '📊',
+        description: 'Фильтрация, сортировка и подготовка наборов данных к анализу.',
+    },
+    Массивы: {
+        icon: '🧩',
+        description: 'Работа с диапазонами и динамическими массивами в одной формуле.',
+    },
+    Импорт: {
+        icon: '🌐',
+        description: 'Подтягивание внешних источников и встроенных онлайн-данных.',
+    },
+};
+
+const DEFAULT_META = {
+    icon: '📁',
+    description: 'Подборка формул по теме с готовыми примерами использования.',
+};
+
+const getFormulaCountLabel = (count) => {
+    const absCount = Math.abs(count);
+    const lastTwo = absCount % 100;
+
+    if (lastTwo >= 11 && lastTwo <= 14) {
+        return `${count} формул`;
+    }
+
+    const lastDigit = absCount % 10;
+
+    if (lastDigit === 1) {
+        return `${count} формула`;
+    }
+
+    if (lastDigit >= 2 && lastDigit <= 4) {
+        return `${count} формулы`;
+    }
+
+    return `${count} формул`;
+};
+
 export const Home = ({ categories, onSelectCategory }) => {
     // const totalFormulas = categories.reduce((sum, category) => sum + category.count, 0);
 
@@ -34,20 +95,39 @@ export const Home = ({ categories, onSelectCategory }) => {
             </div>
 
             <section className={s.categories} aria-label="Категории формул">
-                <h2 className={s.categoryTitle}>Перейти к категориям</h2>
-                <div className={s.categoryGrid}>
+                <h2 className={s.categoryTitle}>Выберите категорию и начните с готовых примеров</h2>
+                <p className={s.categorySubtitle}>
+                    Каждая карточка показывает назначение раздела и количество доступных материалов.
+                </p>
+
+                <ul className={s.categoryGrid}>
                     {categories.map((category) => (
-                        <button
-                            key={category.name}
-                            type="button"
-                            className={s.categoryButton}
-                            onClick={() => onSelectCategory(category.name)}
-                        >
-                            <span>{category.name}</span>
-                            <span className={s.categoryCount}>{category.count} формул</span>
-                        </button>
+                        <li key={category.name} className={s.categoryItem}>
+                            <button
+                                type="button"
+                                className={s.categoryButton}
+                                onClick={() => onSelectCategory(category.name)}
+                                aria-label={`${category.name}. ${getFormulaCountLabel(category.count)}. Открыть категорию`}
+                            >
+                                <div className={s.categoryTop}>
+                                    <span className={s.categoryIcon} aria-hidden="true">
+                                        {(CATEGORY_META[category.name] ?? DEFAULT_META).icon}
+                                    </span>
+
+                                    <span className={s.categoryCount}>{getFormulaCountLabel(category.count)}</span>
+                                </div>
+
+                                <span className={s.categoryName}>{category.name}</span>
+                                <span className={s.categoryDescription}>
+                                    {(CATEGORY_META[category.name] ?? DEFAULT_META).description}
+                                </span>
+                                <span className={s.categoryAction} aria-hidden="true">
+                                    Открыть категорию →
+                                </span>
+                            </button>
+                        </li>
                     ))}
-                </div>
+                </ul>
             </section>
         </section>
     );
