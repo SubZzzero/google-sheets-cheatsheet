@@ -1,16 +1,65 @@
-# React + Vite
+# Google Sheets Cheatsheet
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Что это
 
-Currently, two official plugins are available:
+Это удобная шпаргалка по формулам Google Sheets.
+Здесь можно быстро найти нужную функцию, посмотреть синтаксис и взять готовый пример для своей таблицы.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Вместо долгого поиска по разным сайтам всё собрано в одном месте и разложено по категориям.
 
-## React Compiler
+## Зачем
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Проект помогает делать рабочие таблицы быстрее и спокойнее:
 
-## Expanding the ESLint configuration
+- меньше времени уходит на поиск формул
+- проще понять, какие аргументы нужны функции
+- легче избежать ошибок в синтаксисе
+- можно сразу взять пример и адаптировать под свои данные
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Как пользоваться шпаргалкой
+
+1. Выбрать категорию формул на главной странице.
+2. Открыть карточку нужной функции.
+3. Скопировать пример формулы.
+4. Подставить свои диапазоны и значения.
+
+## Что есть внутри
+
+### Категории
+
+В шпаргалке есть основные разделы:
+
+- Базовые
+- Часто используемые
+- Логические
+- Поиск
+- Текст
+- Данные
+- Массивы
+- Импорт
+
+### Что в карточке формулы
+
+Каждая карточка содержит:
+
+- название функции
+- короткое объяснение
+- синтаксис
+- готовый пример
+
+## Где особенно полезно
+
+- подготовка отчётов
+- сводки и регулярная аналитика
+- проверки по условиям
+- поиск данных между диапазонами
+- обработка текста в столбцах
+
+## Технически
+
+- интерфейс сделан на React и Vite
+- формулы хранятся локально в проекте
+- структура построена вокруг категорий и карточек
+
+---
+
