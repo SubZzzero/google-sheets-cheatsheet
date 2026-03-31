@@ -1,5 +1,7 @@
 # Google Sheets Cheatsheet
 
+![Главная страница приложения](./gitImage/main.png)
+
 ## Что это
 
 Это удобная шпаргалка по формулам Google Sheets.
