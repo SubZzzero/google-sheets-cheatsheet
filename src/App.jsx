@@ -4,6 +4,7 @@ import { Header } from './components/Header/Header';
 import { Sidebar } from './components/Sidebar/Sidebar';
 import { CardList } from './components/CardList/CardList';
 import { Home } from './components/Home/Home';
+import { Footer } from './components/Footer/Footer';
 import { formulas } from './data/formulas';
 
 function App() {
@@ -78,6 +79,8 @@ function App() {
           )}
         </main>
       </div>
+
+      <Footer />
     </div>
   );
 }

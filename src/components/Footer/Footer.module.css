@@ -1,0 +1,52 @@
+.footer {
+    margin-top: auto;
+    border-top: 1px solid #e5e7eb;
+    background: #ffffff;
+    box-shadow: 0 -1px 2px rgba(15, 23, 42, 0.04);
+}
+
+.githubLink {
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    color: #111827;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s ease;
+}
+
+.githubLink:hover {
+    color: #1f2937;
+}
+
+.githubLink:focus-visible {
+    outline: 2px solid #2563eb;
+    outline-offset: -2px;
+    border-radius: 6px;
+}
+
+.githubIcon {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+}
+
+.githubText {
+    line-height: 1;
+}
+
+@media (max-width: 900px) {
+    .githubLink {
+        padding: 10px 16px;
+        font-size: 0.95rem;
+    }
+
+    .githubIcon {
+        width: 18px;
+        height: 18px;
+    }
+}
