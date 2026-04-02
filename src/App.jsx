@@ -7,15 +7,25 @@ import { Home } from './components/Home/Home';
 import { Footer } from './components/Footer/Footer';
 import { formulas } from './data/formulas';
 
+const CATEGORY_ORDER = [
+  'Базовые',
+  'Часто используемые',
+  'Логические',
+  'Поиск',
+  'Текст',
+  'Данные',
+  'Массивы',
+  'Дата и время',
+  'Импорт',
+];
+
 function App() {
   const categories = useMemo(() => {
     const uniqueCategories = [...new Set(formulas.map((item) => item.category))];
+    const orderedCategories = CATEGORY_ORDER.filter((category) => uniqueCategories.includes(category));
+    const customCategories = uniqueCategories.filter((category) => !CATEGORY_ORDER.includes(category));
 
-    if (!uniqueCategories.includes('Базовые')) {
-      return uniqueCategories;
-    }
-
-    return ['Базовые', ...uniqueCategories.filter((category) => category !== 'Базовые')];
+    return [...orderedCategories, ...customCategories];
   }, []);
 
   const categoriesWithCount = useMemo(

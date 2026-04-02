@@ -571,6 +571,88 @@ const baseFormulas = [
         description: "Возвращает последний день месяца со смещением.",
         syntax: "=EOMONTH(start_date, months)",
         example: "=EOMONTH(A1, 1)"
+    },
+
+    // --- ДАТА И ВРЕМЯ ---
+    {
+        id: 71,
+        name: "DATE",
+        category: "Дата и время",
+        description: "Создаёт дату из года, месяца и дня.",
+        syntax: "=DATE(year, month, day)",
+        example: "=DATE(2026, 4, 15)"
+    },
+    {
+        id: 72,
+        name: "DATEDIF",
+        category: "Дата и время",
+        description: "Считает разницу между двумя датами в нужных единицах.",
+        syntax: "=DATEDIF(start_date, end_date, unit)",
+        example: "=DATEDIF(A1, B1, \"D\")"
+    },
+    {
+        id: 73,
+        name: "WORKDAY",
+        category: "Дата и время",
+        description: "Возвращает рабочую дату со смещением по рабочим дням.",
+        syntax: "=WORKDAY(start_date, num_days, [holidays])",
+        example: "=WORKDAY(A1, 10, D1:D5)"
+    },
+    {
+        id: 74,
+        name: "NETWORKDAYS",
+        category: "Дата и время",
+        description: "Считает количество рабочих дней между двумя датами.",
+        syntax: "=NETWORKDAYS(start_date, end_date, [holidays])",
+        example: "=NETWORKDAYS(A1, B1, D1:D5)"
+    },
+    {
+        id: 75,
+        name: "WEEKDAY",
+        category: "Дата и время",
+        description: "Возвращает номер дня недели для даты.",
+        syntax: "=WEEKDAY(date, [type])",
+        example: "=WEEKDAY(A1, 2)"
+    },
+    {
+        id: 76,
+        name: "MONTH",
+        category: "Дата и время",
+        description: "Возвращает номер месяца из даты.",
+        syntax: "=MONTH(date)",
+        example: "=MONTH(A1)"
+    },
+    {
+        id: 77,
+        name: "YEAR",
+        category: "Дата и время",
+        description: "Возвращает год из даты.",
+        syntax: "=YEAR(date)",
+        example: "=YEAR(A1)"
+    },
+    {
+        id: 78,
+        name: "TIME",
+        category: "Дата и время",
+        description: "Создаёт время из часов, минут и секунд.",
+        syntax: "=TIME(hour, minute, second)",
+        example: "=TIME(14, 30, 0)"
+    },
+    {
+        id: 79,
+        name: "HOUR",
+        category: "Дата и время",
+        description: "Возвращает час из значения времени.",
+        syntax: "=HOUR(time)",
+        example: "=HOUR(A1)"
+    },
+    {
+        id: 80,
+        name: "MINUTE",
+        category: "Дата и время",
+        description: "Возвращает минуты из значения времени.",
+        syntax: "=MINUTE(time)",
+        example: "=MINUTE(A1)"
     }
 ];
 
@@ -615,6 +697,20 @@ const ARGUMENT_HINTS = {
     formula: 'выражение, которое применится ко всему диапазону',
     n: 'количество записей в результате',
     is_asc: 'порядок сортировки: TRUE по возрастанию',
+    start_date: 'начальная дата для расчета',
+    end_date: 'конечная дата для расчета',
+    months: 'смещение в месяцах относительно начальной даты',
+    unit: 'единица измерения разницы дат ("D", "M", "Y" и т.д.)',
+    num_days: 'количество рабочих дней для сдвига даты',
+    holidays: 'диапазон праздничных дат, которые нужно исключить',
+    date: 'дата, из которой извлекается часть значения',
+    day: 'номер дня месяца',
+    month: 'номер месяца',
+    year: 'год в числовом формате',
+    hour: 'часы времени',
+    minute: 'минуты времени',
+    second: 'секунды времени',
+    time: 'значение времени или дата-время',
     count: 'сколько значений объединять в группу',
     url: 'ссылка на внешний ресурс',
     xpath: 'XPath-путь к нужному элементу',
@@ -904,6 +1000,46 @@ const EXAMPLE_NARRATIVES = {
     EOMONTH: {
         calculation: 'EOMONTH(A1, 1) берёт дату из A1, сдвигает на 1 месяц вперед и возвращает последний день этого месяца.',
         result: 'Вход: A1 = 15.01.2026. Выход: 28.02.2026.',
+    },
+    DATE: {
+        calculation: 'DATE(2026, 4, 15) формирует корректную дату из отдельных числовых компонентов года, месяца и дня.',
+        result: 'Вход: year = 2026, month = 4, day = 15. Выход: 15.04.2026.',
+    },
+    DATEDIF: {
+        calculation: 'DATEDIF(A1, B1, "D") возвращает количество дней между начальной и конечной датой.',
+        result: 'Вход: A1 = 01.04.2026, B1 = 10.04.2026, unit = "D". Выход: 9.',
+    },
+    WORKDAY: {
+        calculation: 'WORKDAY(A1, 10, D1:D5) прибавляет 10 рабочих дней к дате A1, пропуская выходные и даты из списка праздников.',
+        result: 'Вход: A1 = 01.04.2026, holidays = 07.04.2026. Выход: рабочая дата через 10 рабочих дней без учета выходных и праздника.',
+    },
+    NETWORKDAYS: {
+        calculation: 'NETWORKDAYS(A1, B1, D1:D5) считает только рабочие дни между двумя датами, исключая выходные и праздники.',
+        result: 'Вход: A1 = 01.04.2026, B1 = 10.04.2026, в периоде есть 1 праздничный день. Выход: количество рабочих дней за период.',
+    },
+    WEEKDAY: {
+        calculation: 'WEEKDAY(A1, 2) возвращает номер дня недели, где понедельник = 1, вторник = 2 и т.д.',
+        result: 'Вход: A1 = 06.04.2026 (понедельник), type = 2. Выход: 1.',
+    },
+    MONTH: {
+        calculation: 'MONTH(A1) извлекает номер месяца из даты.',
+        result: 'Вход: A1 = 15.04.2026. Выход: 4.',
+    },
+    YEAR: {
+        calculation: 'YEAR(A1) извлекает год из даты.',
+        result: 'Вход: A1 = 15.04.2026. Выход: 2026.',
+    },
+    TIME: {
+        calculation: 'TIME(14, 30, 0) формирует значение времени из часов, минут и секунд.',
+        result: 'Вход: hour = 14, minute = 30, second = 0. Выход: 14:30:00.',
+    },
+    HOUR: {
+        calculation: 'HOUR(A1) возвращает часовую часть из времени или даты-времени.',
+        result: 'Вход: A1 = 14:45:20. Выход: 14.',
+    },
+    MINUTE: {
+        calculation: 'MINUTE(A1) возвращает минутную часть из времени или даты-времени.',
+        result: 'Вход: A1 = 14:45:20. Выход: 45.',
     },
 };
 
