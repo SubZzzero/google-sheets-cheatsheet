@@ -1,69 +1,69 @@
 # Google Sheets Cheatsheet
 
-![Главная страница приложения](./gitImage/main.png)
+![Application home page](./gitImage/main.png)
 
-## Что это
+## What It Is
 
-Это удобная шпаргалка по формулам Google Sheets.
-Здесь можно быстро найти нужную функцию, посмотреть синтаксис и взять готовый пример для своей таблицы.
+This is a handy cheatsheet for Google Sheets formulas.
+Here you can quickly find the function you need, check the syntax, and use a ready-made example for your table.
 
-Вместо долгого поиска по разным сайтам всё собрано в одном месте и разложено по категориям.
+Instead of spending a long time searching across different websites, everything is collected in one place and organized into categories.
 
-Сайт доступен по ссылке: [sheets-cheatsheet.web.app](https://sheets-cheatsheet.web.app/)
+The site is available here: [sheets-cheatsheet.web.app](https://sheets-cheatsheet.web.app/)
 
-## Зачем
+## Why
 
-Проект помогает делать рабочие таблицы быстрее и спокойнее:
+This project helps you build working spreadsheets faster and with less stress:
 
-- меньше времени уходит на поиск формул
-- проще понять, какие аргументы нужны функции
-- легче избежать ошибок в синтаксисе
-- можно сразу взять пример и адаптировать под свои данные
+- less time spent searching for formulas
+- easier to understand which arguments a function needs
+- easier to avoid syntax errors
+- you can immediately take an example and adapt it to your own data
 
-## Как пользоваться шпаргалкой
+## How To Use The Cheatsheet
 
-1. Выбрать категорию формул на главной странице.
-2. Открыть карточку нужной функции.
-3. Скопировать пример формулы.
-4. Подставить свои диапазоны и значения.
+1. Choose a formula category on the home page.
+2. Open the card for the function you need.
+3. Copy the formula example.
+4. Replace it with your own ranges and values.
 
-## Что есть внутри
+## What Is Inside
 
-### Категории
+### Categories
 
-В шпаргалке есть основные разделы:
+The cheatsheet includes the main sections:
 
-- Базовые
-- Часто используемые
-- Логические
-- Поиск
-- Текст
-- Данные
-- Массивы
-- Импорт
+- Basic
+- Frequently Used
+- Logical
+- Lookup
+- Text
+- Data
+- Arrays
+- Date & Time
+- Import
 
-### Что в карточке формулы
+### What A Formula Card Contains
 
-Каждая карточка содержит:
+Each card contains:
 
-- название функции
-- короткое объяснение
-- синтаксис
-- готовый пример
+- function name
+- short explanation
+- syntax
+- ready-made example
 
-## Где особенно полезно
+## Where It Is Especially Useful
 
-- подготовка отчётов
-- сводки и регулярная аналитика
-- проверки по условиям
-- поиск данных между диапазонами
-- обработка текста в столбцах
+- preparing reports
+- summaries and regular analytics
+- condition-based checks
+- finding data across ranges
+- processing text in columns
 
-## Технически
+## Technical Details
 
-- интерфейс сделан на React и Vite
-- формулы хранятся локально в проекте
-- структура построена вокруг категорий и карточек
+- the interface is built with React and Vite
+- formulas are stored locally in the project
+- the structure is built around categories and cards
 
 ---
-
