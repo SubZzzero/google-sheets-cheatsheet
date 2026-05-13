@@ -5,6 +5,7 @@ import { Sidebar } from './components/Sidebar/Sidebar';
 import { CardList } from './components/CardList/CardList';
 import { Home } from './components/Home/Home';
 import { Footer } from './components/Footer/Footer';
+import { ScrollToTop } from './components/ScrollToTop/ScrollToTop';
 import {
   CATEGORY_ORDER,
   getCategoryLabel,
@@ -106,6 +107,8 @@ function App() {
           )}
         </main>
       </div>
+
+      <ScrollToTop ui={ui.scrollToTop} />
 
       <Footer ui={ui.footer} />
     </div>

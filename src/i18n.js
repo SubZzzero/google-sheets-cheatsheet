@@ -218,6 +218,10 @@ const UI_STRINGS = {
       githubAriaLabel: 'Open SubZzzero GitHub profile',
       githubText: 'GitHub',
     },
+    scrollToTop: {
+      ariaLabel: 'Scroll to top',
+      label: 'Top',
+    },
   },
   ua: {
     documentTitle: 'Шпаргалка з формул Google Sheets',
@@ -276,6 +280,10 @@ const UI_STRINGS = {
       githubAriaLabel: 'Відкрити GitHub-профіль SubZzzero',
       githubText: 'GitHub',
     },
+    scrollToTop: {
+      ariaLabel: 'Прокрутити вгору',
+      label: 'Вгору',
+    },
   },
   ru: {
     documentTitle: 'Шпаргалка по формулам Google Sheets',
@@ -333,6 +341,10 @@ const UI_STRINGS = {
     footer: {
       githubAriaLabel: 'Открыть GitHub-профиль SubZzzero',
       githubText: 'GitHub',
+    },
+    scrollToTop: {
+      ariaLabel: 'Прокрутить вверх',
+      label: 'Вверх',
     },
   },
 };
