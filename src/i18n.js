@@ -168,6 +168,9 @@ const UI_STRINGS = {
       logoAlt: 'Google Sheets logo',
       menuAriaLabel: 'Open or close categories',
       languageSwitcherLabel: 'Switch language',
+      themeSwitcherLabel: 'Switch theme',
+      lightTheme: 'Light',
+      darkTheme: 'Dark',
     },
     home: {
       title: 'Find the right formula fast and put it to work immediately',
@@ -230,6 +233,9 @@ const UI_STRINGS = {
       logoAlt: 'Логотип Google Sheets',
       menuAriaLabel: 'Відкрити або закрити категорії',
       languageSwitcherLabel: 'Перемкнути мову',
+      themeSwitcherLabel: 'Перемкнути тему',
+      lightTheme: 'Світла',
+      darkTheme: 'Темна',
     },
     home: {
       title: 'Швидко знаходьте потрібні формули та одразу використовуйте їх у роботі',
@@ -292,6 +298,9 @@ const UI_STRINGS = {
       logoAlt: 'Логотип Google Sheets',
       menuAriaLabel: 'Открыть или закрыть категории',
       languageSwitcherLabel: 'Переключить язык',
+      themeSwitcherLabel: 'Переключить тему',
+      lightTheme: 'Светлая',
+      darkTheme: 'Тёмная',
     },
     home: {
       title: 'Быстро находите нужные формулы и сразу применяйте их в работе',

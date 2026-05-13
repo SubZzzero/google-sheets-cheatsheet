@@ -1,14 +1,99 @@
 :root {
     color-scheme: light;
+    --bg-page: #f3f5f7;
+    --bg-surface: #ffffff;
+    --bg-surface-muted: #f8fafc;
+    --bg-surface-floating: rgba(255, 255, 255, 0.96);
+    --bg-code: #f3f4f6;
+    --bg-example: #fbfcff;
+    --bg-hero-gradient: linear-gradient(135deg, #f0fdf4 0%, #ecfeff 100%);
+    --bg-icon-gradient: linear-gradient(135deg, #f0fdf4 0%, #e7f6ff 100%);
+    --bg-accent-soft: linear-gradient(90deg, #e5f8ed 0%, #effaf4 100%);
+    --text-primary: #111827;
+    --text-secondary: #1f2937;
+    --text-muted: #475569;
+    --text-subtle: #6b7280;
+    --text-accent: #0f766e;
+    --text-accent-strong: #16915f;
+    --text-accent-soft: #0f7f55;
+    --border-default: #e5e7eb;
+    --border-strong: #cbd5e1;
+    --border-soft: #d5deea;
+    --border-card: #dfe3e8;
+    --border-example: #dbe5f0;
+    --border-accent: #cce8d7;
+    --border-accent-strong: #b7e8ca;
+    --border-hover: #94a3b8;
+    --border-hover-accent: #88d8ab;
+    --shadow-xs: 0 1px 2px rgba(15, 23, 42, 0.06);
+    --shadow-sm: 0 6px 16px rgba(15, 23, 42, 0.04);
+    --shadow-md: 0 8px 20px rgba(15, 23, 42, 0.05);
+    --shadow-lg: 0 10px 24px rgba(15, 23, 42, 0.06);
+    --shadow-xl: 0 12px 28px rgba(15, 23, 42, 0.18);
+    --shadow-active: 0 10px 22px rgba(15, 23, 42, 0.08);
+    --shadow-inset: inset 0 1px 0 rgba(255, 255, 255, 0.7);
+    --overlay-backdrop: rgba(15, 23, 42, 0.38);
+    --focus-outline: #22a06b;
+    --focus-outline-strong: #16a34a;
+    --github-icon-filter: none;
+}
+
+[data-theme='dark'] {
+    color-scheme: dark;
+    --bg-page: #0b1220;
+    --bg-surface: #111827;
+    --bg-surface-muted: #182233;
+    --bg-surface-floating: rgba(17, 24, 39, 0.94);
+    --bg-code: #0a1220;
+    --bg-example: #101827;
+    --bg-hero-gradient: linear-gradient(135deg, #11261c 0%, #11293a 100%);
+    --bg-icon-gradient: linear-gradient(135deg, #173624 0%, #15354a 100%);
+    --bg-accent-soft: linear-gradient(90deg, #103123 0%, #133527 100%);
+    --text-primary: #e5eef9;
+    --text-secondary: #d6e1ee;
+    --text-muted: #a8b6c8;
+    --text-subtle: #94a3b8;
+    --text-accent: #6ee7b7;
+    --text-accent-strong: #34d399;
+    --text-accent-soft: #6ee7b7;
+    --border-default: #2a3648;
+    --border-strong: #3a4960;
+    --border-soft: #314156;
+    --border-card: #334155;
+    --border-example: #2e3b50;
+    --border-accent: #1f5a43;
+    --border-accent-strong: #2a7b59;
+    --border-hover: #5b708f;
+    --border-hover-accent: #3aa973;
+    --shadow-xs: 0 1px 2px rgba(2, 6, 23, 0.45);
+    --shadow-sm: 0 6px 16px rgba(2, 6, 23, 0.28);
+    --shadow-md: 0 8px 20px rgba(2, 6, 23, 0.32);
+    --shadow-lg: 0 10px 24px rgba(2, 6, 23, 0.36);
+    --shadow-xl: 0 12px 28px rgba(2, 6, 23, 0.42);
+    --shadow-active: 0 10px 22px rgba(2, 6, 23, 0.4);
+    --shadow-inset: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+    --overlay-backdrop: rgba(2, 6, 23, 0.72);
+    --focus-outline: #34d399;
+    --focus-outline-strong: #4ade80;
+    --github-icon-filter: brightness(0) invert(0.92);
+}
+
+html {
+    background: var(--bg-page);
 }
 
 body {
     font-family: 'Inter', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-    background: #f3f5f7;
-    color: #111827;
+    background: var(--bg-page);
+    color: var(--text-primary);
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+button {
+    color: inherit;
 }
 
 button:focus-visible {
-    outline: 2px solid #22a06b;
+    outline: 2px solid var(--focus-outline);
     outline-offset: 2px;
 }

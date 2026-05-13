@@ -2,9 +2,9 @@
     position: sticky;
     top: 0;
     z-index: 30;
-    background: #ffffff;
-    border-bottom: 1px solid #e5e7eb;
-    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.06);
+    background: var(--bg-surface);
+    border-bottom: 1px solid var(--border-default);
+    box-shadow: var(--shadow-xs);
 }
 
 .inner {
@@ -34,19 +34,56 @@
     font-size: 1rem;
     font-weight: 700;
     letter-spacing: 0.01em;
-    color: #111827;
+    color: var(--text-primary);
+}
+
+.controls {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.themeButton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 46px;
+    height: 42px;
+    border: 1px solid var(--border-soft);
+    border-radius: 999px;
+    padding: 0;
+    background: var(--bg-surface-muted);
+    box-shadow: var(--shadow-inset);
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.themeIcon {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    object-fit: contain;
+}
+
+.themeIconOnDark {
+    filter: brightness(0) invert(1);
+}
+
+.themeButton:hover {
+    background: var(--bg-surface);
+    border-color: var(--border-hover);
+    box-shadow: var(--shadow-xs);
 }
 
 .languageSwitcher {
-    flex-shrink: 0;
     display: inline-flex;
     align-items: center;
     gap: 4px;
     padding: 4px;
-    border: 1px solid #d7e0ea;
+    border: 1px solid var(--border-soft);
     border-radius: 999px;
-    background: #f8fafc;
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7);
+    background: var(--bg-surface-muted);
+    box-shadow: var(--shadow-inset);
 }
 
 .languageButton {
@@ -55,7 +92,7 @@
     border-radius: 999px;
     padding: 8px 10px;
     background: transparent;
-    color: #475569;
+    color: var(--text-muted);
     font-size: 0.78rem;
     font-weight: 700;
     letter-spacing: 0.04em;
@@ -63,13 +100,13 @@
 }
 
 .languageButton:hover {
-    color: #0f172a;
+    color: var(--text-primary);
 }
 
 .languageButtonActive {
-    background: #ffffff;
-    color: #0f766e;
-    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.08);
+    background: var(--bg-surface);
+    color: var(--text-accent);
+    box-shadow: var(--shadow-xs);
 }
 
 
@@ -80,17 +117,17 @@
     gap: 4px;
     width: 36px;
     height: 36px;
-    border: 1px solid #d1d5db;
+    border: 1px solid var(--border-strong);
     border-radius: 9px;
     padding: 7px;
-    background: #ffffff;
+    background: var(--bg-surface);
 }
 
 .menuLine {
     width: 100%;
     height: 2px;
     border-radius: 99px;
-    background: #374151;
+    background: var(--text-secondary);
 }
 
 @media (max-width: 900px) {
@@ -115,6 +152,15 @@
         font-size: 0.92rem;
     }
 
+    .controls {
+        gap: 8px;
+    }
+
+    .themeButton {
+        width: 42px;
+        height: 38px;
+    }
+
     .languageSwitcher {
         gap: 2px;
         padding: 3px;
@@ -132,8 +178,22 @@
         gap: 10px;
     }
 
+    .controls {
+        gap: 6px;
+    }
+
     .productName {
         font-size: 0.84rem;
+    }
+
+    .themeButton {
+        width: 38px;
+        height: 36px;
+    }
+
+    .themeIcon {
+        width: 16px;
+        height: 16px;
     }
 
     .languageButton {

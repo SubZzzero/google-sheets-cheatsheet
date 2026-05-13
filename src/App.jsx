@@ -15,8 +15,42 @@ import {
 } from './i18n';
 import { getFormulas } from './data/localizedFormulas';
 
+const THEME_STORAGE_KEY = 'gs-cheatsheet-theme';
+const DEFAULT_THEME = 'light';
+
+const isSupportedTheme = (theme) => theme === 'light' || theme === 'dark';
+
+const getSystemTheme = () => {
+  if (typeof window === 'undefined' || typeof window.matchMedia !== 'function') {
+    return DEFAULT_THEME;
+  }
+
+  return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+};
+
+const getStoredTheme = () => {
+  if (typeof window === 'undefined') {
+    return null;
+  }
+
+  const storedTheme = window.localStorage.getItem(THEME_STORAGE_KEY);
+
+  return isSupportedTheme(storedTheme) ? storedTheme : null;
+};
+
+const getInitialTheme = () => getStoredTheme() ?? getSystemTheme();
+
+const persistTheme = (theme) => {
+  if (typeof window === 'undefined' || !isSupportedTheme(theme)) {
+    return;
+  }
+
+  window.localStorage.setItem(THEME_STORAGE_KEY, theme);
+};
+
 function App() {
   const [locale, setLocale] = useState(() => getStoredLocale());
+  const [theme, setTheme] = useState(() => getInitialTheme());
   const [activeCategoryId, setActiveCategoryId] = useState(null);
   const [isSidebarOpen, setSidebarOpen] = useState(false);
 
@@ -28,6 +62,12 @@ function App() {
     document.documentElement.lang = locale === 'ua' ? 'uk' : locale;
     document.title = ui.documentTitle;
   }, [locale, ui.documentTitle]);
+
+  useEffect(() => {
+    persistTheme(theme);
+    document.documentElement.dataset.theme = theme;
+    document.documentElement.style.colorScheme = theme;
+  }, [theme]);
 
   const categories = useMemo(() => {
     const uniqueCategories = [...new Set(formulas.map((item) => item.categoryId))];
@@ -69,7 +109,9 @@ function App() {
     <div className={s.app}>
       <Header
         locale={locale}
+        theme={theme}
         onLocaleChange={setLocale}
+        onThemeToggle={() => setTheme((currentTheme) => (currentTheme === 'light' ? 'dark' : 'light'))}
         ui={ui.header}
         showMenu={Boolean(activeCategoryId)}
         isSidebarOpen={isSidebarOpen}

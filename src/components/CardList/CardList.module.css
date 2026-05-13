@@ -15,22 +15,22 @@
     font-size: clamp(1.5rem, 2.2vw, 2.2rem);
     line-height: 1.2;
     font-weight: 700;
-    color: #111827;
+    color: var(--text-primary);
     letter-spacing: 0.01em;
 }
 
 .subtitle {
     margin-top: 6px;
-    color: #4b5563;
+    color: var(--text-muted);
     line-height: 1.45;
     max-width: 68ch;
 }
 
 .homeButton {
-    border: 1px solid #cbd5e1;
+    border: 1px solid var(--border-strong);
     border-radius: 10px;
-    background: #ffffff;
-    color: #111827;
+    background: var(--bg-surface);
+    color: var(--text-primary);
     font-size: 0.94rem;
     font-weight: 600;
     padding: 9px 12px;
@@ -39,8 +39,8 @@
 }
 
 .homeButton:hover {
-    background: #f8fafc;
-    border-color: #94a3b8;
+    background: var(--bg-surface-muted);
+    border-color: var(--border-hover);
 }
 
 .grid {
@@ -50,12 +50,12 @@
 }
 
 .emptyState {
-    background: #ffffff;
-    border: 1px solid #e5e7eb;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-default);
     border-radius: 14px;
-    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.05);
+    box-shadow: var(--shadow-md);
     padding: 18px;
-    color: #6b7280;
+    color: var(--text-subtle);
 }
 
 @media (max-width: 640px) {

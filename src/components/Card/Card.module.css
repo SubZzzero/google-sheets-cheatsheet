@@ -1,8 +1,8 @@
 .card {
-    background: #ffffff;
-    border: 1px solid #dfe3e8;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-card);
     border-radius: 14px;
-    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.05);
+    box-shadow: var(--shadow-md);
     padding: 16px;
     display: flex;
     flex-direction: column;
@@ -19,15 +19,15 @@
 .name {
     font-size: clamp(1.5rem, 2vw, 2rem);
     line-height: 1;
-    color: #16915f;
+    color: var(--text-accent-strong);
     letter-spacing: 0.01em;
 }
 
 .copyButton {
-    border: 1px solid #cbd5e1;
+    border: 1px solid var(--border-strong);
     border-radius: 10px;
-    background: #ffffff;
-    color: #111827;
+    background: var(--bg-surface);
+    color: var(--text-primary);
     font-size: 0.95rem;
     font-weight: 600;
     padding: 8px 12px;
@@ -35,8 +35,8 @@
 }
 
 .copyButton:hover {
-    background: #f8fafc;
-    border-color: #94a3b8;
+    background: var(--bg-surface-muted);
+    border-color: var(--border-hover);
 }
 
 .group {
@@ -48,14 +48,14 @@
 .label {
     font-size: 1.02rem;
     font-weight: 700;
-    color: #111827;
+    color: var(--text-primary);
 }
 
 .syntax {
     display: block;
     border-radius: 9px;
-    background: #f3f4f6;
-    color: #111827;
+    background: var(--bg-code);
+    color: var(--text-primary);
     font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono',
         'Courier New', monospace;
     font-size: 0.95rem;
@@ -65,7 +65,7 @@
 }
 
 .text {
-    color: #1f2937;
+    color: var(--text-secondary);
     line-height: 1.45;
 }
 
@@ -73,9 +73,9 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
-    border: 1px solid #dbe5f0;
+    border: 1px solid var(--border-example);
     border-radius: 12px;
-    background: #fbfcff;
+    background: var(--bg-example);
     padding: 10px;
 }
 
@@ -87,13 +87,13 @@
 
 .exampleSection:not(:last-child) {
     padding-bottom: 8px;
-    border-bottom: 1px dashed #dbe5f0;
+    border-bottom: 1px dashed var(--border-example);
 }
 
 .exampleTitle {
     font-size: 0.88rem;
     font-weight: 700;
-    color: #1f2937;
+    color: var(--text-secondary);
     text-transform: uppercase;
     letter-spacing: 0.02em;
 }
@@ -106,7 +106,7 @@
 }
 
 .variableItem {
-    color: #374151;
+    color: var(--text-muted);
     line-height: 1.4;
 }
 

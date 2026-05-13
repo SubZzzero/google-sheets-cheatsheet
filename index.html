@@ -5,6 +5,30 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Google Sheets Formula Cheat Sheet</title>
+    <script>
+      (() => {
+        const storageKey = 'gs-cheatsheet-theme';
+        const root = document.documentElement;
+        const supportsMatchMedia = typeof window.matchMedia === 'function';
+        const getSystemTheme = () =>
+          supportsMatchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+            ? 'dark'
+            : 'light';
+
+        try {
+          const storedTheme = window.localStorage.getItem(storageKey);
+          const theme = storedTheme === 'dark' || storedTheme === 'light' ? storedTheme : getSystemTheme();
+
+          root.dataset.theme = theme;
+          root.style.colorScheme = theme;
+        } catch {
+          const theme = getSystemTheme();
+
+          root.dataset.theme = theme;
+          root.style.colorScheme = theme;
+        }
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>
