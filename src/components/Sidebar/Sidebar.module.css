@@ -45,9 +45,9 @@
 @media (max-width: 900px) {
     .sidebar {
         position: fixed;
-        top: 65px;
+        top: var(--header-height);
+        bottom: 0;
         left: 0;
-        height: calc(100dvh - 65px);
         width: min(82vw, 320px);
         border-radius: 0 16px 16px 0;
         border-left: 0;
@@ -64,7 +64,7 @@
     .backdrop {
         display: block;
         position: fixed;
-        inset: 65px 0 0;
+        inset: var(--header-height) 0 0;
         background: rgba(15, 23, 42, 0.38);
         z-index: 35;
         opacity: 0;

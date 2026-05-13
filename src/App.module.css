@@ -16,7 +16,7 @@
     width: 100%;
     max-width: 1320px;
     margin: 0 auto;
-    padding: var(--page-layout-top-padding) 20px 40px;
+    padding: 0 20px 40px;
 }
 
 .pageLayoutHome {
@@ -25,6 +25,7 @@
 
 .mainContent {
     min-width: 0;
+    padding-top: var(--page-layout-top-padding);
 }
 
 @media (max-width: 1080px) {
@@ -42,6 +43,5 @@
 
     .pageLayout {
         display: block;
-        padding-top: var(--page-layout-top-padding);
     }
 }

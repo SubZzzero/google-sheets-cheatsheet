@@ -12,7 +12,7 @@ const baseFormulas = [
         id: 2,
         name: "IFERROR",
         category: "Логические",
-        description: "Заменяет стандартную ошибку (#N/A, #VALUE!) на ваш текст или число.",
+        description: "Возвращает исходное значение, а при любой ошибке — запасное значение или пустой результат.",
         syntax: "=IFERROR(value, [value_if_error])",
         example: "=IFERROR(VLOOKUP(A1, B:C, 2, 0), \"Не найдено\")"
     },
@@ -44,7 +44,7 @@ const baseFormulas = [
         id: 6,
         name: "IFS",
         category: "Логические",
-        description: "Проверяет несколько условий подряд.",
+        description: "Проверяет несколько условий подряд и возвращает значение для первого TRUE.",
         syntax: "=IFS(cond1, val1, cond2, val2, ...)",
         example: "=IFS(A1>90, \"A\", A1>70, \"B\")"
     },
@@ -52,7 +52,7 @@ const baseFormulas = [
         id: 7,
         name: "SWITCH",
         category: "Логические",
-        description: "Выбирает значение из списка вариантов.",
+        description: "Сопоставляет выражение со списком вариантов и может вернуть значение по умолчанию.",
         syntax: "=SWITCH(expression, case1, value1, ...)",
         example: "=SWITCH(A1, 1, \"One\", 2, \"Two\")"
     },
@@ -60,7 +60,7 @@ const baseFormulas = [
         id: 8,
         name: "ISBLANK",
         category: "Логические",
-        description: "Проверяет, пуста ли ячейка.",
+        description: "Проверяет, ссылается ли выражение на действительно пустую ячейку.",
         syntax: "=ISBLANK(value)",
         example: "=ISBLANK(A1)"
     },
@@ -96,15 +96,15 @@ const baseFormulas = [
         category: "Поиск",
         description: "Ищет значение по горизонтали.",
         syntax: "=HLOOKUP(search_key, range, index, [is_sorted])",
-        example: "=HLOOKUP(A1, A1:D2, 2, FALSE)"
+        example: "=HLOOKUP(\"Feb\", A1:D2, 2, FALSE)"
     },
     {
         id: 13,
         name: "XLOOKUP",
         category: "Поиск",
         description: "Универсальный поиск в любом направлении.",
-        syntax: "=XLOOKUP(search_key, lookup_range, result_range)",
-        example: "=XLOOKUP(A1, A:A, B:B)"
+        syntax: "=XLOOKUP(search_key, lookup_range, result_range, [missing_value], [match_mode], [search_mode])",
+        example: "=XLOOKUP(A1, A:A, B:B, \"Не найдено\")"
     },
     {
         id: 14,
@@ -134,8 +134,8 @@ const baseFormulas = [
         id: 17,
         name: "LOOKUP",
         category: "Поиск",
-        description: "Базовая функция поиска.",
-        syntax: "=LOOKUP(search_key, search_range, result_range)",
+        description: "Ищет значение в отсортированном диапазоне и возвращает точное или ближайшее меньшее совпадение.",
+        syntax: "=LOOKUP(search_key, search_range, [result_range])",
         example: "=LOOKUP(A1, A:A, B:B)"
     },
     {
@@ -251,8 +251,8 @@ const baseFormulas = [
         name: "QUERY",
         category: "Данные",
         description: "SQL-подобные запросы.",
-        syntax: "=QUERY(data, query)",
-        example: "=QUERY(A1:C, \"SELECT A\")"
+        syntax: "=QUERY(data, query, [headers])",
+        example: "=QUERY(A1:C10, \"select A\", 1)"
     },
     {
         id: 32,
@@ -299,7 +299,7 @@ const baseFormulas = [
         name: "SEQUENCE",
         category: "Массивы",
         description: "Генерирует числа.",
-        syntax: "=SEQUENCE(rows, cols)",
+        syntax: "=SEQUENCE(rows, [columns], [start_value], [step])",
         example: "=SEQUENCE(5)"
     },
     {
@@ -315,16 +315,16 @@ const baseFormulas = [
         name: "WRAPROWS",
         category: "Массивы",
         description: "Делит на строки.",
-        syntax: "=WRAPROWS(range, count)",
-        example: "=WRAPROWS(A1:A10, 3)"
+        syntax: "=WRAPROWS(range, count, [pad_with])",
+        example: "=WRAPROWS(A1:A7, 3, \"\")"
     },
     {
         id: 40,
         name: "WRAPCOLS",
         category: "Массивы",
         description: "Делит на столбцы.",
-        syntax: "=WRAPCOLS(range, count)",
-        example: "=WRAPCOLS(A1:A10, 3)"
+        syntax: "=WRAPCOLS(range, count, [pad_with])",
+        example: "=WRAPCOLS(A1:A7, 3, \"\")"
     },
 
     // --- IMPORT ---
@@ -365,8 +365,8 @@ const baseFormulas = [
         name: "GOOGLEFINANCE",
         category: "Импорт",
         description: "Финансовые данные.",
-        syntax: "=GOOGLEFINANCE(ticker)",
-        example: "=GOOGLEFINANCE(\"GOOG\")"
+        syntax: "=GOOGLEFINANCE(ticker, [attribute], [start_date], [end_date_or_num_days], [interval])",
+        example: "=GOOGLEFINANCE(\"NASDAQ:GOOG\", \"price\")"
     },
     {
         id: 46,
@@ -522,7 +522,7 @@ const baseFormulas = [
         category: "Часто используемые",
         description: "Суммирует значения по нескольким условиям.",
         syntax: "=SUMIFS(sum_range, criteria_range1, criterion1, [criteria_range2, criterion2, ...])",
-        example: "=SUMIFS(C1:C100, A1:A100, \"Продажи\", B1:B100, \">=01.01.2026\")"
+        example: "=SUMIFS(C1:C100, A1:A100, \"Продажи\", B1:B100, \">=\"&DATE(2026, 1, 1))"
     },
     {
         id: 65,
@@ -673,6 +673,9 @@ const ARGUMENT_HINTS = {
     case1: 'первый вариант для сравнения',
     value1: 'результат для соответствующего варианта',
     search_key: 'что нужно найти',
+    missing_value: 'что вернуть, если совпадение не найдено',
+    match_mode: 'режим точного, приблизительного или wildcard-поиска',
+    search_mode: 'направление или способ обхода диапазона',
     range: 'диапазон ячеек для работы функции',
     index: 'номер строки/столбца или позиция результата',
     is_sorted: 'признак сортировки (TRUE/FALSE)',
@@ -688,17 +691,31 @@ const ARGUMENT_HINTS = {
     ref_text: 'текстовая ссылка на ячейку или диапазон',
     delimiter: 'разделитель текста',
     text: 'исходный текст',
+    search_for: 'какой фрагмент текста нужно заменить',
+    replace_with: 'на что заменить найденный фрагмент',
+    occurrence_number: 'какое по счёту вхождение заменять',
+    regular_expression: 'шаблон регулярного выражения для проверки текста',
     ignore_empty: 'нужно ли пропускать пустые ячейки',
     num_chars: 'сколько символов извлечь',
     start: 'позиция начала извлечения',
+    start_value: 'с какого числа начинать последовательность',
     length: 'длина извлекаемого фрагмента',
     data: 'таблица или диапазон данных',
     query: 'текст SQL-подобного запроса',
+    headers: 'сколько строк в начале диапазона считать заголовками',
     formula: 'выражение, которое применится ко всему диапазону',
     n: 'количество записей в результате',
     is_asc: 'порядок сортировки: TRUE по возрастанию',
+    criterion: 'условие, которому должны соответствовать значения',
+    criteria_range1: 'первый диапазон для проверки условия',
+    criterion1: 'первое условие отбора',
+    criteria_range2: 'второй диапазон для проверки условия',
+    criterion2: 'второе условие отбора',
+    sum_range: 'диапазон, значения из которого нужно суммировать',
+    places: 'до скольких знаков округлять число',
     start_date: 'начальная дата для расчета',
     end_date: 'конечная дата для расчета',
+    end_date_or_num_days: 'конечная дата периода или число дней истории',
     months: 'смещение в месяцах относительно начальной даты',
     unit: 'единица измерения разницы дат ("D", "M", "Y" и т.д.)',
     num_days: 'количество рабочих дней для сдвига даты',
@@ -712,12 +729,19 @@ const ARGUMENT_HINTS = {
     second: 'секунды времени',
     time: 'значение времени или дата-время',
     count: 'сколько значений объединять в группу',
+    columns: 'сколько столбцов создать в последовательности',
+    step: 'с каким шагом увеличивать последовательность',
+    pad_with: 'чем заполнять пустые ячейки в неполной группе',
     url: 'ссылка на внешний ресурс',
     xpath: 'XPath-путь к нужному элементу',
     ticker: 'биржевой тикер инструмента',
+    attribute: 'какой тип рыночных данных вернуть',
+    interval: 'частота исторических данных, например DAILY или WEEKLY',
     label: 'отображаемый текст ссылки',
     source: 'язык исходного текста',
     target: 'язык перевода',
+    value2: 'дополнительное значение или диапазон для функции',
+    value_if_na: 'что вернуть, если функция получила ошибку #N/A',
 };
 
 const EXAMPLE_NARRATIVES = {
@@ -743,15 +767,15 @@ const EXAMPLE_NARRATIVES = {
     },
     IFS: {
         calculation: 'Если A1 = 85, условие A1>90 ложно, но A1>70 истинно, поэтому выбирается "B".',
-        result: 'Вход: A1 = 85, формула =IFS(A1>90, "A", A1>70, "B"). Выход: "B".',
+        result: 'Вход: A1 = 85, формула =IFS(A1>90, "A", A1>70, "B"). Выход: "B". Если ни одно условие не сработает, функция вернет #N/A.',
     },
     SWITCH: {
         calculation: 'Если A1 = 2, значение expression совпадает с case 2, поэтому возвращается "Two".',
-        result: 'Вход: A1 = 2, формула =SWITCH(A1, 1, "One", 2, "Two"). Выход: "Two".',
+        result: 'Вход: A1 = 2, формула =SWITCH(A1, 1, "One", 2, "Two"). Выход: "Two". Если совпадения и значения по умолчанию нет, функция вернет #N/A.',
     },
     ISBLANK: {
         calculation: 'Если A1 пустая, ISBLANK(A1) вернет TRUE.',
-        result: 'Вход: ячейка A1 пустая. Выход: TRUE.',
+        result: 'Вход: ячейка A1 действительно пустая. Выход: TRUE. Ячейка с формулой, которая возвращает "", пустой не считается.',
     },
     ISNUMBER: {
         calculation: 'Если в A1 число 150, функция определяет его как числовой тип.',
@@ -766,11 +790,11 @@ const EXAMPLE_NARRATIVES = {
         result: 'Вход: A1 = "SKU-2", в A:C есть строка "SKU-2 | 450 | В наличии". Выход: 450.',
     },
     HLOOKUP: {
-        calculation: 'Ключ из A1 ищется в первой строке диапазона A1:D2, затем возвращается значение из 2-й строки.',
-        result: 'Вход: A1 = "Feb", первая строка = Jan, Feb, Mar, вторая = 100, 120, 90. Выход: 120.',
+        calculation: 'HLOOKUP("Feb", A1:D2, 2, FALSE) ищет "Feb" в первой строке диапазона и возвращает значение из 2-й строки того же столбца.',
+        result: 'Вход: первая строка диапазона A1:D2 = Jan, Feb, Mar, а вторая = 100, 120, 90. Выход: 120 из столбца Feb.',
     },
     XLOOKUP: {
-        calculation: 'Значение из A1 ищется в столбце A:A, а ответ берется из той же позиции столбца B:B.',
+        calculation: 'Значение из A1 ищется в столбце A:A, а ответ берется из той же позиции столбца B:B. Если совпадения нет, функция может вернуть текст "Не найдено".',
         result: 'Вход: A1 = "Код-15", в A:A найдено "Код-15", а в той же строке B:B стоит "Доставка". Выход: "Доставка".',
     },
     INDEX: {
@@ -786,8 +810,8 @@ const EXAMPLE_NARRATIVES = {
         result: 'Вход: строки (Товар A, 8), (Товар B, 15), (Товар C, 21). Выход: (Товар B, 15) и (Товар C, 21).',
     },
     LOOKUP: {
-        calculation: 'LOOKUP сопоставляет ключ из A1 с диапазоном A:A и возвращает значение из B:B.',
-        result: 'Вход: A1 = 220, A:A = 100, 200, 300, B:B = Bronze, Silver, Gold. Выход: "Silver".',
+        calculation: 'LOOKUP ищет значение в отсортированном диапазоне A:A и, если точного совпадения нет, берет последнюю позицию, которая меньше или равна ключу.',
+        result: 'Вход: A1 = 220, A:A = 100, 200, 300, B:B = Bronze, Silver, Gold. Так как 220 находится между 200 и 300, функция берет строку для 200. Выход: "Silver".',
     },
     CHOOSE: {
         calculation: 'CHOOSE(2, "A", "B") выбирает элемент с индексом 2 из списка аргументов.',
@@ -842,8 +866,8 @@ const EXAMPLE_NARRATIVES = {
         result: 'Вход: A1 = "Sales Q1". Выход: "SALES Q1".',
     },
     QUERY: {
-        calculation: 'QUERY(A1:C, "SELECT A") выбирает из диапазона только столбец A.',
-        result: 'Вход: таблица A:C с именами в столбце A (Иван, Ольга, Мария). Выход: отдельный столбец с Иван, Ольга, Мария.',
+        calculation: 'QUERY(A1:C10, "select A", 1) выбирает из диапазона только столбец A и явно считает первую строку заголовками.',
+        result: 'Вход: диапазон A1:C10, где строка 1 содержит заголовки, а ниже в столбце A идут Иван, Ольга, Мария. Выход: столбец A без неоднозначности из-за автоопределения заголовков.',
     },
     ARRAYFORMULA: {
         calculation: 'ARRAYFORMULA(A1:A*B1:B) применяет умножение построчно ко всему диапазону сразу.',
@@ -874,12 +898,12 @@ const EXAMPLE_NARRATIVES = {
         result: 'Вход: диапазон [A B C; D E F]. Выход: столбец A, B, C, D, E, F.',
     },
     WRAPROWS: {
-        calculation: 'WRAPROWS(A1:A10, 3) группирует поток значений в строки по 3 элемента.',
-        result: 'Вход: A1:A7 = 1,2,3,4,5,6,7 и count = 3. Выход: строки [1,2,3], [4,5,6], [7].',
+        calculation: 'WRAPROWS(A1:A7, 3, "") группирует поток значений в строки по 3 элемента и заполняет пустые ячейки в последней строке пустой строкой.',
+        result: 'Вход: A1:A7 = 1,2,3,4,5,6,7 и count = 3. Выход: строки [1,2,3], [4,5,6], [7,"",""] без #N/A в хвосте.',
     },
     WRAPCOLS: {
-        calculation: 'WRAPCOLS(A1:A10, 3) разбивает список на столбцы по 3 элемента.',
-        result: 'Вход: A1:A7 = 1,2,3,4,5,6,7 и count = 3. Выход: столбцы [1,2,3], [4,5,6], [7].',
+        calculation: 'WRAPCOLS(A1:A7, 3, "") разбивает список на столбцы по 3 элемента и заполняет пустые ячейки в последнем столбце пустой строкой.',
+        result: 'Вход: A1:A7 = 1,2,3,4,5,6,7 и count = 3. Выход: столбцы [1,2,3], [4,5,6], [7,"",""] без #N/A в хвосте.',
     },
     IMPORTRANGE: {
         calculation: 'IMPORTRANGE("url", "Sheet1!A1:B10") подтягивает диапазон из внешней таблицы.',
@@ -898,8 +922,8 @@ const EXAMPLE_NARRATIVES = {
         result: 'Вход: CSV с колонками date, sales и строкой 2026-03-01,1200. Выход: отдельные столбцы date и sales с данными.',
     },
     GOOGLEFINANCE: {
-        calculation: 'GOOGLEFINANCE("GOOG") запрашивает рыночные данные по тикеру GOOG.',
-        result: 'Вход: тикер "GOOG". Выход: текущая котировка и сопутствующие рыночные поля по инструменту GOOG.',
+        calculation: 'GOOGLEFINANCE("NASDAQ:GOOG", "price") запрашивает текущее значение атрибута price для акции GOOG на NASDAQ.',
+        result: 'Вход: тикер "NASDAQ:GOOG" и атрибут "price". Выход: текущее ценовое значение для инструмента, если сервис Google Finance его поддерживает.',
     },
     IMAGE: {
         calculation: 'IMAGE("url") вставляет изображение по ссылке в ячейку.',
@@ -974,7 +998,7 @@ const EXAMPLE_NARRATIVES = {
         result: 'Вход: (Продажи, 1200), (Маркетинг, 500), (Продажи, 800). Выход: 2000.',
     },
     SUMIFS: {
-        calculation: 'SUMIFS(C1:C100, A1:A100, "Продажи", B1:B100, ">=01.01.2026") суммирует C только для строк, где отдел = "Продажи" и дата соответствует условию.',
+        calculation: 'SUMIFS(C1:C100, A1:A100, "Продажи", B1:B100, ">="&DATE(2026, 1, 1)) суммирует C только для строк, где отдел = "Продажи" и дата не раньше 1 января 2026 года.',
         result: 'Вход: (Продажи, 05.01.2026, 900), (Продажи, 20.12.2025, 700), (Продажи, 15.02.2026, 1100). Выход: 2000.',
     },
     NOW: {
