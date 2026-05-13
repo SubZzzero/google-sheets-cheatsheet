@@ -191,6 +191,653 @@ const FORMULA_EXAMPLE_OVERRIDES = {
   },
 };
 
+const FORMULA_EXAMPLE_NARRATIVES = {
+  en: {
+    IF: {
+      calculation: 'If A1 contains 12, the condition A1 > 10 is met, so the function chooses the value "High".',
+      result: 'Input: A1 = 12, formula =IF(A1 > 10, "High", "Low"). Output: "High".',
+    },
+    IFERROR: {
+      calculation: 'When VLOOKUP does not find A1 in the B:C range, an error occurs, and IFERROR substitutes "Not found".',
+      result: 'Input: A1 = "SKU-9", and there is no such key in B:C. Output: "Not found" instead of an error.',
+    },
+    AND: {
+      calculation: 'With A1 = 5 and B1 = 3, both conditions (>0) are true, so the final result is TRUE.',
+      result: 'Input: A1 = 5 and B1 = 3 in the formula =AND(A1>0, B1>0). Output: TRUE.',
+    },
+    OR: {
+      calculation: 'If A1 = -2 and B1 = 3, one of the conditions (>0) is true, so OR returns TRUE.',
+      result: 'Input: A1 = -2 and B1 = 3 in the formula =OR(A1>0, B1>0). Output: TRUE.',
+    },
+    NOT: {
+      calculation: 'With A1 = 12, the expression A1>10 gives TRUE, and NOT flips it to FALSE.',
+      result: 'Input: A1 = 12, the check A1>10 gives TRUE. Output: FALSE after applying NOT.',
+    },
+    IFS: {
+      calculation: 'If A1 = 85, the condition A1>90 is false, but A1>70 is true, so "B" is selected.',
+      result: 'Input: A1 = 85, formula =IFS(A1>90, "A", A1>70, "B"). Output: "B".',
+    },
+    SWITCH: {
+      calculation: 'If A1 = 2, the expression value matches case 2, so "Two" is returned.',
+      result: 'Input: A1 = 2, formula =SWITCH(A1, 1, "One", 2, "Two"). Output: "Two".',
+    },
+    ISBLANK: {
+      calculation: 'If A1 is empty, ISBLANK(A1) returns TRUE.',
+      result: 'Input: cell A1 is empty. Output: TRUE.',
+    },
+    ISNUMBER: {
+      calculation: 'If A1 contains the number 150, the function identifies it as a numeric type.',
+      result: 'Input: A1 contains 150. Output: TRUE.',
+    },
+    ISTEXT: {
+      calculation: 'If A1 contains "ID-01", the function recognizes the type as text.',
+      result: 'Input: A1 contains "ID-01". Output: TRUE.',
+    },
+    VLOOKUP: {
+      calculation: 'The function searches for the key from A1 in the first column of the A:C range and takes the value from the 2nd column.',
+      result: 'Input: A1 = "SKU-2", and A:C contains the row "SKU-2 | 450 | In stock". Output: 450.',
+    },
+    HLOOKUP: {
+      calculation: 'The key from A1 is searched in the first row of the A1:D2 range, then the value from the 2nd row is returned.',
+      result: 'Input: A1 = "Feb", first row = Jan, Feb, Mar, second row = 100, 120, 90. Output: 120.',
+    },
+    XLOOKUP: {
+      calculation: 'The value from A1 is searched in column A:A, and the answer is taken from the same position in column B:B.',
+      result: 'Input: A1 = "Code-15", "Code-15" is found in A:A, and B:B on the same row contains "Delivery". Output: "Delivery".',
+    },
+    INDEX: {
+      calculation: 'INDEX(A1:C10, 2, 3) points to the 2nd row and 3rd column, which is cell C2.',
+      result: 'Input: in the A1:C10 range, C2 = "Paid". Output: "Paid".',
+    },
+    MATCH: {
+      calculation: 'MATCH searches for the value from A1 in B:B and returns its position number.',
+      result: 'Input: A1 = "Ivan", values in B:B = Oleg, Ivan, Anna. Output: 2.',
+    },
+    FILTER: {
+      calculation: 'FILTER(A1:B10, B1:B10>10) keeps only the rows where the second column contains a number greater than 10.',
+      result: 'Input: rows (Product A, 8), (Product B, 15), (Product C, 21). Output: (Product B, 15) and (Product C, 21).',
+    },
+    LOOKUP: {
+      calculation: 'LOOKUP matches the key from A1 against the A:A range and returns the value from B:B.',
+      result: 'Input: A1 = 220, A:A = 100, 200, 300, B:B = Bronze, Silver, Gold. Output: "Silver".',
+    },
+    CHOOSE: {
+      calculation: 'CHOOSE(2, "A", "B") selects the item with index 2 from the argument list.',
+      result: 'Input: formula =CHOOSE(2, "A", "B"). Output: "B".',
+    },
+    OFFSET: {
+      calculation: 'OFFSET(A1, 2, 1) shifts the reference 2 rows down and 1 column to the right, to B3.',
+      result: 'Input: starting point A1, offset by 2 rows and 1 column, B3 contains 980. Output: 980.',
+    },
+    INDIRECT: {
+      calculation: 'INDIRECT("A1") turns the text "A1" into a working cell reference.',
+      result: 'Input: A1 contains "Report", formula =INDIRECT("A1"). Output: "Report".',
+    },
+    SPLIT: {
+      calculation: 'If A1 contains "Ivan,Petrov", SPLIT with a comma separates the string into parts.',
+      result: 'Input: A1 = "Ivan,Petrov". Output: "Ivan" and "Petrov" in adjacent cells.',
+    },
+    JOIN: {
+      calculation: 'JOIN(",", A1:A5) combines all values from the range into one string separated by commas.',
+      result: 'Input: A1:A3 = Kyiv, Lviv, Odesa. Output: "Kyiv,Lviv,Odesa".',
+    },
+    CONCAT: {
+      calculation: 'CONCAT(A1, B1) joins the contents of two cells without a separator.',
+      result: 'Input: A1 = "INV-", B1 = "105". Output: "INV-105".',
+    },
+    TEXTJOIN: {
+      calculation: 'TEXTJOIN(",", TRUE, A1:A5) joins the range with commas and skips empty cells.',
+      result: 'Input: A1:A4 = Anna, (empty), Igor, Olha. Output: "Anna,Igor,Olha".',
+    },
+    LEFT: {
+      calculation: 'LEFT(A1, 4) takes the first 4 characters from the text in A1.',
+      result: 'Input: A1 = "ABCD-789", formula =LEFT(A1, 4). Output: "ABCD".',
+    },
+    RIGHT: {
+      calculation: 'RIGHT(A1, 2) returns the last 2 characters of the value.',
+      result: 'Input: A1 = "ABCD-789", formula =RIGHT(A1, 2). Output: "89".',
+    },
+    MID: {
+      calculation: 'MID(A1, 2, 3) starts from the 2nd character and extracts 3 consecutive characters.',
+      result: 'Input: A1 = "ABCD-789", formula =MID(A1, 2, 3). Output: "BCD".',
+    },
+    LEN: {
+      calculation: 'LEN(A1) counts all characters in the cell, including digits, letters, and spaces.',
+      result: 'Input: A1 = "ID 105". Output: 6.',
+    },
+    LOWER: {
+      calculation: 'LOWER(A1) converts all letters in the text to lowercase.',
+      result: 'Input: A1 = "Sales Q1". Output: "sales q1".',
+    },
+    UPPER: {
+      calculation: 'UPPER(A1) makes all letters uppercase.',
+      result: 'Input: A1 = "Sales Q1". Output: "SALES Q1".',
+    },
+    QUERY: {
+      calculation: 'QUERY(A1:C, "SELECT A") selects only column A from the range.',
+      result: 'Input: table A:C with names in column A (Ivan, Olha, Maria). Output: a separate column with Ivan, Olha, Maria.',
+    },
+    ARRAYFORMULA: {
+      calculation: 'ARRAYFORMULA(A1:A*B1:B) applies multiplication row by row to the whole range at once.',
+      result: 'Input: A1:A3 = 2,3,4 and B1:B3 = 10,5,8. Output: column 20, 15, 32.',
+    },
+    UNIQUE: {
+      calculation: 'UNIQUE(A1:A) goes through the list and removes duplicate values.',
+      result: 'Input: A1:A5 = A, B, A, C, B. Output: A, B, C.',
+    },
+    SORT: {
+      calculation: 'SORT(A1:B, 2, TRUE) sorts the table by the 2nd column in ascending order.',
+      result: 'Input: (Product A, 30), (Product B, 10), (Product C, 20). Output: (Product B, 10), (Product C, 20), (Product A, 30).',
+    },
+    SORTN: {
+      calculation: 'SORTN(A1:B, 5) sorts the data and keeps the first 5 rows.',
+      result: 'Input: a table with 7 rows and n = 5. Output: the first 5 rows of the sorted result.',
+    },
+    TRANSPOSE: {
+      calculation: 'TRANSPOSE(A1:B2) swaps rows and columns in the selected range.',
+      result: 'Input: matrix [1 2; 3 4]. Output: matrix [1 3; 2 4].',
+    },
+    SEQUENCE: {
+      calculation: 'SEQUENCE(5) generates the sequence 1, 2, 3, 4, 5 in a single column.',
+      result: 'Input: formula =SEQUENCE(5). Output: 1, 2, 3, 4, 5 by rows.',
+    },
+    FLATTEN: {
+      calculation: 'FLATTEN(A1:C3) gathers the values from the matrix into one long column.',
+      result: 'Input: range [A B C; D E F]. Output: column A, B, C, D, E, F.',
+    },
+    WRAPROWS: {
+      calculation: 'WRAPROWS(A1:A10, 3) groups the value stream into rows of 3 items each.',
+      result: 'Input: A1:A7 = 1,2,3,4,5,6,7 and count = 3. Output: rows [1,2,3], [4,5,6], [7].',
+    },
+    WRAPCOLS: {
+      calculation: 'WRAPCOLS(A1:A10, 3) splits the list into columns of 3 items each.',
+      result: 'Input: A1:A7 = 1,2,3,4,5,6,7 and count = 3. Output: columns [1,2,3], [4,5,6], [7].',
+    },
+    IMPORTRANGE: {
+      calculation: 'IMPORTRANGE("url", "Sheet1!A1:B10") pulls a range from an external spreadsheet.',
+      result: 'Input: external range Sheet1!A1:B3 = Product/Price: Coffee-120, Tea-80, Juice-95. Output: the same 3 rows in the current sheet.',
+    },
+    IMPORTHTML: {
+      calculation: 'IMPORTHTML("url", "table", 1) fetches the first HTML table from the page.',
+      result: 'Input: a page with a table (City | Population). Output: that table appears in Google Sheets cells.',
+    },
+    IMPORTXML: {
+      calculation: 'IMPORTXML("url", "//title") extracts the text of the title tag using XPath.',
+      result: 'Input: page URL and XPath //title. Output: the page title text, for example "Google Sheets Help".',
+    },
+    IMPORTDATA: {
+      calculation: 'IMPORTDATA("url") loads a CSV or TSV file from a link and splits it into columns.',
+      result: 'Input: CSV with columns date, sales and row 2026-03-01,1200. Output: separate date and sales columns with the data.',
+    },
+    GOOGLEFINANCE: {
+      calculation: 'GOOGLEFINANCE("GOOG") requests market data for the GOOG ticker.',
+      result: 'Input: ticker "GOOG". Output: the current quote and related market fields for GOOG.',
+    },
+    IMAGE: {
+      calculation: 'IMAGE("url") inserts an image from a link into a cell.',
+      result: 'Input: product image URL. Output: the picture is displayed directly in the cell.',
+    },
+    HYPERLINK: {
+      calculation: 'HYPERLINK("url", "Open") creates a clickable link with a label.',
+      result: 'Input: url = "https://example.com", label = "Open". Output: clickable text "Open".',
+    },
+    ENCODEURL: {
+      calculation: 'ENCODEURL(A1) replaces spaces and special characters with a URL-safe format.',
+      result: 'Input: A1 = "sales report 2026". Output: "sales%20report%202026".',
+    },
+    GOOGLETRANSLATE: {
+      calculation: 'GOOGLETRANSLATE(A1, "en", "es") translates the text in A1 from English to Spanish.',
+      result: 'Input: A1 = "Hello", source = "en", target = "es". Output: "Hola".',
+    },
+    SPARKLINE: {
+      calculation: 'SPARKLINE(A1:A10) builds a mini chart from a set of numbers directly in a cell.',
+      result: 'Input: A1:A5 = 12, 16, 14, 20, 18. Output: a mini chart with a peak at 20.',
+    },
+    SUM: {
+      calculation: 'SUM(A1:A10) adds all numeric values in the specified range and ignores empty cells.',
+      result: 'Input: A1:A4 = 120, 80, 50, 30. Output: 280.',
+    },
+    AVERAGE: {
+      calculation: 'AVERAGE(B1:B10) sums the numbers in the range and divides the total by the count of numeric values.',
+      result: 'Input: B1:B4 = 10, 20, 30, 40. Output: 25.',
+    },
+    COUNT: {
+      calculation: 'COUNT(C1:C20) counts only cells with numbers; text and empty values are ignored.',
+      result: 'Input: C1:C6 = 5, "test", 12, (empty), 7, "N/A". Output: 3.',
+    },
+    COUNTA: {
+      calculation: 'COUNTA(A1:A20) counts all non-empty cells regardless of data type: number, text, date, or logical value.',
+      result: 'Input: A1:A5 = "Ivan", 120, (empty), TRUE, "Report". Output: 4.',
+    },
+    MAX: {
+      calculation: 'MAX(D1:D30) scans the range and returns the largest numeric value.',
+      result: 'Input: D1:D5 = 18, 42, 7, 35, 29. Output: 42.',
+    },
+    MIN: {
+      calculation: 'MIN(D1:D30) determines the smallest number in the range.',
+      result: 'Input: D1:D5 = 18, 42, 7, 35, 29. Output: 7.',
+    },
+    ROUND: {
+      calculation: 'ROUND(E1, 2) rounds the number by standard rules to 2 decimal places.',
+      result: 'Input: E1 = 12.3456. Output: 12.35.',
+    },
+    ROUNDUP: {
+      calculation: 'ROUNDUP(E1, 0) rounds the number up to an integer, even if the fractional part is less than 0.5.',
+      result: 'Input: E1 = 12.01. Output: 13.',
+    },
+    ROUNDDOWN: {
+      calculation: 'ROUNDDOWN(E1, 0) always rounds the number down to an integer by dropping the fractional part.',
+      result: 'Input: E1 = 12.99. Output: 12.',
+    },
+    TODAY: {
+      calculation: 'TODAY() returns the current system date without time and updates when the sheet recalculates.',
+      result: 'Input: formula =TODAY() when the system date is 30.03.2026. Output: 30.03.2026.',
+    },
+    COUNTIF: {
+      calculation: 'COUNTIF(A1:A100, ">10") checks each cell in the range and counts only values greater than 10.',
+      result: 'Input: A1:A6 = 5, 11, 18, 9, 14, 3. Output: 3.',
+    },
+    COUNTIFS: {
+      calculation: 'COUNTIFS(A1:A100, ">10", B1:B100, "Yes") counts rows where both conditions are met at the same time.',
+      result: 'Input: rows (12, Yes), (15, No), (8, Yes), (21, Yes). Output: 2.',
+    },
+    SUMIF: {
+      calculation: 'SUMIF(A1:A100, "Sales", B1:B100) finds rows where column A contains "Sales" and sums the corresponding values from column B.',
+      result: 'Input: (Sales, 1200), (Marketing, 500), (Sales, 800). Output: 2000.',
+    },
+    SUMIFS: {
+      calculation: 'SUMIFS(C1:C100, A1:A100, "Sales", B1:B100, ">=2026-01-01") sums C only for rows where department = "Sales" and the date matches the condition.',
+      result: 'Input: (Sales, 2026-01-05, 900), (Sales, 2025-12-20, 700), (Sales, 2026-02-15, 1100). Output: 2000.',
+    },
+    NOW: {
+      calculation: 'NOW() returns the current date and time according to the sheet system settings.',
+      result: 'Input: formula =NOW() when the system date and time are 30.03.2026 16:45. Output: 30.03.2026 16:45.',
+    },
+    IFNA: {
+      calculation: 'IFNA(VLOOKUP(A1, D:E, 2, FALSE), "No data") shows fallback text only if the lookup returns a #N/A error.',
+      result: 'Input: A1 = "SKU-9", and there is no such key in D:E. Output: "No data".',
+    },
+    TRIM: {
+      calculation: 'TRIM(A1) removes extra spaces at the beginning and end of the string, and leaves only one space between words.',
+      result: 'Input: A1 = "  Report   for   March  ". Output: "Report for March".',
+    },
+    SUBSTITUTE: {
+      calculation: 'SUBSTITUTE(A1, "-", "/") replaces all occurrences of "-" with "/" in the text.',
+      result: 'Input: A1 = "2026-03-30". Output: "2026/03/30".',
+    },
+    REGEXMATCH: {
+      calculation: 'REGEXMATCH(A1, "^[A-Z]{3}-\\\\d{4}$") checks whether the text matches the pattern: 3 uppercase letters, a hyphen, and 4 digits.',
+      result: 'Input: A1 = "ABC-1234". Output: TRUE.',
+    },
+    EOMONTH: {
+      calculation: 'EOMONTH(A1, 1) takes the date from A1, shifts it forward by 1 month, and returns the last day of that month.',
+      result: 'Input: A1 = 15.01.2026. Output: 28.02.2026.',
+    },
+    DATE: {
+      calculation: 'DATE(2026, 4, 15) builds a valid date from separate numeric year, month, and day components.',
+      result: 'Input: year = 2026, month = 4, day = 15. Output: 15.04.2026.',
+    },
+    DATEDIF: {
+      calculation: 'DATEDIF(A1, B1, "D") returns the number of days between the start date and the end date.',
+      result: 'Input: A1 = 01.04.2026, B1 = 10.04.2026, unit = "D". Output: 9.',
+    },
+    WORKDAY: {
+      calculation: 'WORKDAY(A1, 10, D1:D5) adds 10 working days to date A1, skipping weekends and dates from the holiday list.',
+      result: 'Input: A1 = 01.04.2026, holidays = 07.04.2026. Output: the working date 10 business days later, excluding weekends and the holiday.',
+    },
+    NETWORKDAYS: {
+      calculation: 'NETWORKDAYS(A1, B1, D1:D5) counts only working days between two dates, excluding weekends and holidays.',
+      result: 'Input: A1 = 01.04.2026, B1 = 10.04.2026, and the period includes 1 holiday. Output: the number of working days in the period.',
+    },
+    WEEKDAY: {
+      calculation: 'WEEKDAY(A1, 2) returns the weekday number where Monday = 1, Tuesday = 2, and so on.',
+      result: 'Input: A1 = 06.04.2026 (Monday), type = 2. Output: 1.',
+    },
+    MONTH: {
+      calculation: 'MONTH(A1) extracts the month number from a date.',
+      result: 'Input: A1 = 15.04.2026. Output: 4.',
+    },
+    YEAR: {
+      calculation: 'YEAR(A1) extracts the year from a date.',
+      result: 'Input: A1 = 15.04.2026. Output: 2026.',
+    },
+    TIME: {
+      calculation: 'TIME(14, 30, 0) builds a time value from hours, minutes, and seconds.',
+      result: 'Input: hour = 14, minute = 30, second = 0. Output: 14:30:00.',
+    },
+    HOUR: {
+      calculation: 'HOUR(A1) returns the hour part from a time or date-time value.',
+      result: 'Input: A1 = 14:45:20. Output: 14.',
+    },
+    MINUTE: {
+      calculation: 'MINUTE(A1) returns the minute part from a time or date-time value.',
+      result: 'Input: A1 = 14:45:20. Output: 45.',
+    },
+  },
+  ua: {
+    IF: {
+      calculation: 'Якщо в A1 стоїть 12, умова A1 > 10 виконується, тому функція вибирає значення "High".',
+      result: 'Вхід: A1 = 12, формула =IF(A1 > 10, "High", "Low"). Вихід: "High".',
+    },
+    IFERROR: {
+      calculation: 'Коли VLOOKUP не знаходить A1 у діапазоні B:C, виникає помилка, і IFERROR підставляє "Not found".',
+      result: 'Вхід: A1 = "SKU-9", у діапазоні B:C немає такого ключа. Вихід: "Not found" замість помилки.',
+    },
+    AND: {
+      calculation: 'За A1 = 5 і B1 = 3 обидві умови (>0) істинні, отже підсумок буде TRUE.',
+      result: 'Вхід: A1 = 5 і B1 = 3 у формулі =AND(A1>0, B1>0). Вихід: TRUE.',
+    },
+    OR: {
+      calculation: 'Якщо A1 = -2, а B1 = 3, одна з умов (>0) істинна, отже OR поверне TRUE.',
+      result: 'Вхід: A1 = -2 і B1 = 3 у формулі =OR(A1>0, B1>0). Вихід: TRUE.',
+    },
+    NOT: {
+      calculation: 'За A1 = 12 вираз A1>10 дає TRUE, а NOT інвертує його в FALSE.',
+      result: 'Вхід: A1 = 12, перевірка A1>10 дає TRUE. Вихід: FALSE після застосування NOT.',
+    },
+    IFS: {
+      calculation: 'Якщо A1 = 85, умова A1>90 хибна, але A1>70 істинна, тому вибирається "B".',
+      result: 'Вхід: A1 = 85, формула =IFS(A1>90, "A", A1>70, "B"). Вихід: "B".',
+    },
+    SWITCH: {
+      calculation: 'Якщо A1 = 2, значення expression збігається з case 2, тому повертається "Two".',
+      result: 'Вхід: A1 = 2, формула =SWITCH(A1, 1, "One", 2, "Two"). Вихід: "Two".',
+    },
+    ISBLANK: {
+      calculation: 'Якщо A1 порожня, ISBLANK(A1) поверне TRUE.',
+      result: 'Вхід: комірка A1 порожня. Вихід: TRUE.',
+    },
+    ISNUMBER: {
+      calculation: 'Якщо в A1 число 150, функція визначає його як числовий тип.',
+      result: 'Вхід: у A1 значення 150. Вихід: TRUE.',
+    },
+    ISTEXT: {
+      calculation: 'Якщо в A1 записано "ID-01", функція розпізнає тип як текст.',
+      result: 'Вхід: у A1 значення "ID-01". Вихід: TRUE.',
+    },
+    VLOOKUP: {
+      calculation: 'Функція шукає ключ з A1 у першому стовпці діапазону A:C і бере значення з 2-го стовпця.',
+      result: 'Вхід: A1 = "SKU-2", в A:C є рядок "SKU-2 | 450 | В наявності". Вихід: 450.',
+    },
+    HLOOKUP: {
+      calculation: 'Ключ з A1 шукається в першому рядку діапазону A1:D2, потім повертається значення з 2-го рядка.',
+      result: 'Вхід: A1 = "Feb", перший рядок = Jan, Feb, Mar, другий = 100, 120, 90. Вихід: 120.',
+    },
+    XLOOKUP: {
+      calculation: 'Значення з A1 шукається в стовпці A:A, а відповідь береться з тієї самої позиції у стовпці B:B.',
+      result: 'Вхід: A1 = "Код-15", в A:A знайдено "Код-15", а в тому самому рядку B:B стоїть "Доставка". Вихід: "Доставка".',
+    },
+    INDEX: {
+      calculation: 'INDEX(A1:C10, 2, 3) звертається до 2-го рядка і 3-го стовпця, це комірка C2.',
+      result: 'Вхід: у діапазоні A1:C10 значення C2 = "Оплачено". Вихід: "Оплачено".',
+    },
+    MATCH: {
+      calculation: 'MATCH шукає значення A1 у B:B і повертає його порядкову позицію.',
+      result: 'Вхід: A1 = "Іван", у B:B значення = Олег, Іван, Анна. Вихід: 2.',
+    },
+    FILTER: {
+      calculation: 'FILTER(A1:B10, B1:B10>10) залишає лише рядки, де в другому стовпці число більше за 10.',
+      result: 'Вхід: рядки (Товар A, 8), (Товар B, 15), (Товар C, 21). Вихід: (Товар B, 15) і (Товар C, 21).',
+    },
+    LOOKUP: {
+      calculation: 'LOOKUP зіставляє ключ з A1 з діапазоном A:A і повертає значення з B:B.',
+      result: 'Вхід: A1 = 220, A:A = 100, 200, 300, B:B = Bronze, Silver, Gold. Вихід: "Silver".',
+    },
+    CHOOSE: {
+      calculation: 'CHOOSE(2, "A", "B") вибирає елемент з індексом 2 зі списку аргументів.',
+      result: 'Вхід: формула =CHOOSE(2, "A", "B"). Вихід: "B".',
+    },
+    OFFSET: {
+      calculation: 'OFFSET(A1, 2, 1) зміщує посилання на 2 рядки вниз і 1 стовпець праворуч, до B3.',
+      result: 'Вхід: початкова точка A1, зміщення на 2 рядки і 1 стовпець, у B3 зберігається 980. Вихід: 980.',
+    },
+    INDIRECT: {
+      calculation: 'INDIRECT("A1") перетворює текст "A1" на робоче посилання на комірку.',
+      result: 'Вхід: в A1 записано "Звіт", формула =INDIRECT("A1"). Вихід: "Звіт".',
+    },
+    SPLIT: {
+      calculation: 'Якщо A1 містить "Іван,Петров", SPLIT за комою розділить рядок на частини.',
+      result: 'Вхід: A1 = "Іван,Петров". Вихід: у сусідніх комірках "Іван" і "Петров".',
+    },
+    JOIN: {
+      calculation: 'JOIN(",", A1:A5) обʼєднує всі значення діапазону в один рядок через кому.',
+      result: 'Вхід: A1:A3 = Київ, Львів, Одеса. Вихід: "Київ,Львів,Одеса".',
+    },
+    CONCAT: {
+      calculation: 'CONCAT(A1, B1) склеює вміст двох комірок без роздільника.',
+      result: 'Вхід: A1 = "INV-", B1 = "105". Вихід: "INV-105".',
+    },
+    TEXTJOIN: {
+      calculation: 'TEXTJOIN(",", TRUE, A1:A5) обʼєднує діапазон через кому і пропускає порожні комірки.',
+      result: 'Вхід: A1:A4 = Анна, (порожньо), Ігор, Оля. Вихід: "Анна,Ігор,Оля".',
+    },
+    LEFT: {
+      calculation: 'LEFT(A1, 4) бере перші 4 символи з тексту в A1.',
+      result: 'Вхід: A1 = "ABCD-789", формула =LEFT(A1, 4). Вихід: "ABCD".',
+    },
+    RIGHT: {
+      calculation: 'RIGHT(A1, 2) повертає останні 2 символи значення.',
+      result: 'Вхід: A1 = "ABCD-789", формула =RIGHT(A1, 2). Вихід: "89".',
+    },
+    MID: {
+      calculation: 'MID(A1, 2, 3) починає з 2-го символу і витягує 3 символи підряд.',
+      result: 'Вхід: A1 = "ABCD-789", формула =MID(A1, 2, 3). Вихід: "BCD".',
+    },
+    LEN: {
+      calculation: 'LEN(A1) підраховує всі символи в комірці, включно з цифрами, літерами і пробілами.',
+      result: 'Вхід: A1 = "ID 105". Вихід: 6.',
+    },
+    LOWER: {
+      calculation: 'LOWER(A1) перетворює всі літери в тексті на нижній регістр.',
+      result: 'Вхід: A1 = "Sales Q1". Вихід: "sales q1".',
+    },
+    UPPER: {
+      calculation: 'UPPER(A1) робить усі літери великими.',
+      result: 'Вхід: A1 = "Sales Q1". Вихід: "SALES Q1".',
+    },
+    QUERY: {
+      calculation: 'QUERY(A1:C, "SELECT A") вибирає з діапазону лише стовпець A.',
+      result: 'Вхід: таблиця A:C з іменами у стовпці A (Іван, Ольга, Марія). Вихід: окремий стовпець з Іван, Ольга, Марія.',
+    },
+    ARRAYFORMULA: {
+      calculation: 'ARRAYFORMULA(A1:A*B1:B) застосовує множення построково до всього діапазону одразу.',
+      result: 'Вхід: A1:A3 = 2,3,4 і B1:B3 = 10,5,8. Вихід: стовпець 20, 15, 32.',
+    },
+    UNIQUE: {
+      calculation: 'UNIQUE(A1:A) проходить списком і видаляє повторювані значення.',
+      result: 'Вхід: A1:A5 = A, B, A, C, B. Вихід: A, B, C.',
+    },
+    SORT: {
+      calculation: 'SORT(A1:B, 2, TRUE) сортує таблицю за 2-м стовпцем у зростаючому порядку.',
+      result: 'Вхід: (Товар A, 30), (Товар B, 10), (Товар C, 20). Вихід: (Товар B, 10), (Товар C, 20), (Товар A, 30).',
+    },
+    SORTN: {
+      calculation: 'SORTN(A1:B, 5) сортує дані й залишає перші 5 рядків.',
+      result: 'Вхід: таблиця з 7 рядків і n = 5. Вихід: перші 5 рядків відсортованого результату.',
+    },
+    TRANSPOSE: {
+      calculation: 'TRANSPOSE(A1:B2) міняє місцями рядки і стовпці вибраного діапазону.',
+      result: 'Вхід: матриця [1 2; 3 4]. Вихід: матриця [1 3; 2 4].',
+    },
+    SEQUENCE: {
+      calculation: 'SEQUENCE(5) генерує послідовність 1, 2, 3, 4, 5 в одному стовпці.',
+      result: 'Вхід: формула =SEQUENCE(5). Вихід: 1, 2, 3, 4, 5 по рядках.',
+    },
+    FLATTEN: {
+      calculation: 'FLATTEN(A1:C3) збирає значення з матриці в один довгий стовпець.',
+      result: 'Вхід: діапазон [A B C; D E F]. Вихід: стовпець A, B, C, D, E, F.',
+    },
+    WRAPROWS: {
+      calculation: 'WRAPROWS(A1:A10, 3) групує потік значень у рядки по 3 елементи.',
+      result: 'Вхід: A1:A7 = 1,2,3,4,5,6,7 і count = 3. Вихід: рядки [1,2,3], [4,5,6], [7].',
+    },
+    WRAPCOLS: {
+      calculation: 'WRAPCOLS(A1:A10, 3) розбиває список на стовпці по 3 елементи.',
+      result: 'Вхід: A1:A7 = 1,2,3,4,5,6,7 і count = 3. Вихід: стовпці [1,2,3], [4,5,6], [7].',
+    },
+    IMPORTRANGE: {
+      calculation: 'IMPORTRANGE("url", "Sheet1!A1:B10") підтягує діапазон із зовнішньої таблиці.',
+      result: 'Вхід: зовнішній діапазон Sheet1!A1:B3 = Товар/Ціна: Кава-120, Чай-80, Сік-95. Вихід: ті самі 3 рядки на поточному аркуші.',
+    },
+    IMPORTHTML: {
+      calculation: 'IMPORTHTML("url", "table", 1) отримує першу HTML-таблицю зі сторінки.',
+      result: 'Вхід: сторінка з таблицею (Місто | Населення). Вихід: ця таблиця зʼявляється в комірках Google Sheets.',
+    },
+    IMPORTXML: {
+      calculation: 'IMPORTXML("url", "//title") витягує текст тега title за XPath.',
+      result: 'Вхід: URL сторінки і XPath //title. Вихід: текст заголовка сторінки, наприклад "Google Sheets Help".',
+    },
+    IMPORTDATA: {
+      calculation: 'IMPORTDATA("url") завантажує CSV або TSV-файл за посиланням і розбиває його на колонки.',
+      result: 'Вхід: CSV з колонками date, sales і рядком 2026-03-01,1200. Вихід: окремі стовпці date і sales з даними.',
+    },
+    GOOGLEFINANCE: {
+      calculation: 'GOOGLEFINANCE("GOOG") запитує ринкові дані за тикером GOOG.',
+      result: 'Вхід: тикер "GOOG". Вихід: поточне котирування і супутні ринкові поля для інструмента GOOG.',
+    },
+    IMAGE: {
+      calculation: 'IMAGE("url") вставляє зображення за посиланням у комірку.',
+      result: 'Вхід: URL зображення товару. Вихід: картинка відображається прямо в комірці.',
+    },
+    HYPERLINK: {
+      calculation: 'HYPERLINK("url", "Open") створює клікабельне посилання з підписом.',
+      result: 'Вхід: url = "https://example.com", label = "Open". Вихід: клікабельний текст "Open".',
+    },
+    ENCODEURL: {
+      calculation: 'ENCODEURL(A1) замінює пробіли та спецсимволи на безпечний URL-формат.',
+      result: 'Вхід: A1 = "sales report 2026". Вихід: "sales%20report%202026".',
+    },
+    GOOGLETRANSLATE: {
+      calculation: 'GOOGLETRANSLATE(A1, "en", "uk") перекладає текст з A1 з англійської на українську.',
+      result: 'Вхід: A1 = "Hello", source = "en", target = "uk". Вихід: "Привіт".',
+    },
+    SPARKLINE: {
+      calculation: 'SPARKLINE(A1:A10) будує мініграфік за набором чисел прямо в комірці.',
+      result: 'Вхід: A1:A5 = 12, 16, 14, 20, 18. Вихід: мініграфік з піком на значенні 20.',
+    },
+    SUM: {
+      calculation: 'SUM(A1:A10) додає всі числові значення у вказаному діапазоні й ігнорує порожні комірки.',
+      result: 'Вхід: A1:A4 = 120, 80, 50, 30. Вихід: 280.',
+    },
+    AVERAGE: {
+      calculation: 'AVERAGE(B1:B10) підсумовує числа діапазону і ділить суму на кількість числових значень.',
+      result: 'Вхід: B1:B4 = 10, 20, 30, 40. Вихід: 25.',
+    },
+    COUNT: {
+      calculation: 'COUNT(C1:C20) рахує лише комірки з числами, текст і порожні значення не враховуються.',
+      result: 'Вхід: C1:C6 = 5, "тест", 12, (порожньо), 7, "N/A". Вихід: 3.',
+    },
+    COUNTA: {
+      calculation: 'COUNTA(A1:A20) рахує всі непорожні комірки незалежно від типу даних: число, текст, дата, логічне значення.',
+      result: 'Вхід: A1:A5 = "Іван", 120, (порожньо), TRUE, "Звіт". Вихід: 4.',
+    },
+    MAX: {
+      calculation: 'MAX(D1:D30) проходить діапазоном і повертає найбільше числове значення.',
+      result: 'Вхід: D1:D5 = 18, 42, 7, 35, 29. Вихід: 42.',
+    },
+    MIN: {
+      calculation: 'MIN(D1:D30) визначає мінімальне число в діапазоні.',
+      result: 'Вхід: D1:D5 = 18, 42, 7, 35, 29. Вихід: 7.',
+    },
+    ROUND: {
+      calculation: 'ROUND(E1, 2) округлює число за стандартними правилами до 2 знаків після коми.',
+      result: 'Вхід: E1 = 12.3456. Вихід: 12.35.',
+    },
+    ROUNDUP: {
+      calculation: 'ROUNDUP(E1, 0) округлює число вгору до цілого, навіть якщо дробова частина менша за 0.5.',
+      result: 'Вхід: E1 = 12.01. Вихід: 13.',
+    },
+    ROUNDDOWN: {
+      calculation: 'ROUNDDOWN(E1, 0) завжди округлює число вниз до цілого, відкидаючи дробову частину.',
+      result: 'Вхід: E1 = 12.99. Вихід: 12.',
+    },
+    TODAY: {
+      calculation: 'TODAY() повертає поточну системну дату без часу й оновлюється під час перерахунку таблиці.',
+      result: 'Вхід: формула =TODAY() за системної дати 30.03.2026. Вихід: 30.03.2026.',
+    },
+    COUNTIF: {
+      calculation: 'COUNTIF(A1:A100, ">10") перевіряє кожну комірку діапазону і рахує лише значення, більші за 10.',
+      result: 'Вхід: A1:A6 = 5, 11, 18, 9, 14, 3. Вихід: 3.',
+    },
+    COUNTIFS: {
+      calculation: 'COUNTIFS(A1:A100, ">10", B1:B100, "Yes") рахує рядки, де одночасно виконуються обидві умови.',
+      result: 'Вхід: рядки (12, Yes), (15, No), (8, Yes), (21, Yes). Вихід: 2.',
+    },
+    SUMIF: {
+      calculation: 'SUMIF(A1:A100, "Sales", B1:B100) знаходить рядки, де в стовпці A вказано "Sales", і підсумовує відповідні значення зі стовпця B.',
+      result: 'Вхід: (Sales, 1200), (Marketing, 500), (Sales, 800). Вихід: 2000.',
+    },
+    SUMIFS: {
+      calculation: 'SUMIFS(C1:C100, A1:A100, "Sales", B1:B100, ">=2026-01-01") підсумовує C лише для рядків, де відділ = "Sales" і дата відповідає умові.',
+      result: 'Вхід: (Sales, 2026-01-05, 900), (Sales, 2025-12-20, 700), (Sales, 2026-02-15, 1100). Вихід: 2000.',
+    },
+    NOW: {
+      calculation: 'NOW() повертає поточні дату й час відповідно до системних налаштувань таблиці.',
+      result: 'Вхід: формула =NOW() за системних дати й часу 30.03.2026 16:45. Вихід: 30.03.2026 16:45.',
+    },
+    IFNA: {
+      calculation: 'IFNA(VLOOKUP(A1, D:E, 2, FALSE), "No data") показує запасний текст лише якщо пошук повертає помилку #N/A.',
+      result: 'Вхід: A1 = "SKU-9", у D:E немає такого ключа. Вихід: "No data".',
+    },
+    TRIM: {
+      calculation: 'TRIM(A1) видаляє зайві пробіли на початку і в кінці рядка, а між словами залишає лише один пробіл.',
+      result: 'Вхід: A1 = "  Звіт   за   березень  ". Вихід: "Звіт за березень".',
+    },
+    SUBSTITUTE: {
+      calculation: 'SUBSTITUTE(A1, "-", "/") замінює всі входження символу "-" на "/" у тексті.',
+      result: 'Вхід: A1 = "2026-03-30". Вихід: "2026/03/30".',
+    },
+    REGEXMATCH: {
+      calculation: 'REGEXMATCH(A1, "^[A-Z]{3}-\\\\d{4}$") перевіряє, чи відповідає текст шаблону: 3 великі літери, дефіс і 4 цифри.',
+      result: 'Вхід: A1 = "ABC-1234". Вихід: TRUE.',
+    },
+    EOMONTH: {
+      calculation: 'EOMONTH(A1, 1) бере дату з A1, зсуває її на 1 місяць уперед і повертає останній день цього місяця.',
+      result: 'Вхід: A1 = 15.01.2026. Вихід: 28.02.2026.',
+    },
+    DATE: {
+      calculation: 'DATE(2026, 4, 15) формує коректну дату з окремих числових компонентів року, місяця і дня.',
+      result: 'Вхід: year = 2026, month = 4, day = 15. Вихід: 15.04.2026.',
+    },
+    DATEDIF: {
+      calculation: 'DATEDIF(A1, B1, "D") повертає кількість днів між початковою і кінцевою датою.',
+      result: 'Вхід: A1 = 01.04.2026, B1 = 10.04.2026, unit = "D". Вихід: 9.',
+    },
+    WORKDAY: {
+      calculation: 'WORKDAY(A1, 10, D1:D5) додає 10 робочих днів до дати A1, пропускаючи вихідні та дати зі списку свят.',
+      result: 'Вхід: A1 = 01.04.2026, holidays = 07.04.2026. Вихід: робоча дата через 10 робочих днів без урахування вихідних і свята.',
+    },
+    NETWORKDAYS: {
+      calculation: 'NETWORKDAYS(A1, B1, D1:D5) рахує лише робочі дні між двома датами, виключаючи вихідні та свята.',
+      result: 'Вхід: A1 = 01.04.2026, B1 = 10.04.2026, у періоді є 1 святковий день. Вихід: кількість робочих днів за період.',
+    },
+    WEEKDAY: {
+      calculation: 'WEEKDAY(A1, 2) повертає номер дня тижня, де понеділок = 1, вівторок = 2 і т.д.',
+      result: 'Вхід: A1 = 06.04.2026 (понеділок), type = 2. Вихід: 1.',
+    },
+    MONTH: {
+      calculation: 'MONTH(A1) витягує номер місяця з дати.',
+      result: 'Вхід: A1 = 15.04.2026. Вихід: 4.',
+    },
+    YEAR: {
+      calculation: 'YEAR(A1) витягує рік з дати.',
+      result: 'Вхід: A1 = 15.04.2026. Вихід: 2026.',
+    },
+    TIME: {
+      calculation: 'TIME(14, 30, 0) формує значення часу з годин, хвилин і секунд.',
+      result: 'Вхід: hour = 14, minute = 30, second = 0. Вихід: 14:30:00.',
+    },
+    HOUR: {
+      calculation: 'HOUR(A1) повертає годинну частину з часу або дати-часу.',
+      result: 'Вхід: A1 = 14:45:20. Вихід: 14.',
+    },
+    MINUTE: {
+      calculation: 'MINUTE(A1) повертає хвилинну частину з часу або дати-часу.',
+      result: 'Вхід: A1 = 14:45:20. Вихід: 45.',
+    },
+  },
+};
+
 const ARGUMENT_HINTS = {
   en: {
     condition: 'condition to check',
@@ -435,12 +1082,13 @@ const buildVariablesLegend = (syntax, locale) => {
 
 const buildLocalizedDetails = (formula, locale) => {
   const detailsText = LOCALIZED_DETAIL_TEXT[locale] ?? LOCALIZED_DETAIL_TEXT[DEFAULT_LOCALE];
+  const narrative = FORMULA_EXAMPLE_NARRATIVES[locale]?.[formula.name];
 
   return {
     purpose: formula.description,
     variables: buildVariablesLegend(formula.syntax, locale),
-    calculation: detailsText.calculation(formula),
-    result: detailsText.result(formula),
+    calculation: narrative?.calculation ?? detailsText.calculation(formula),
+    result: narrative?.result ?? detailsText.result(formula),
   };
 };
 

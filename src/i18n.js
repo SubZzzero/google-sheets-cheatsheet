@@ -8,8 +8,8 @@ export const LOCALE_LABELS = {
 export const LOCALE_STORAGE_KEY = 'gs-cheatsheet-locale';
 
 export const CATEGORY_ORDER = [
-  'basic',
   'frequentlyUsed',
+  'basic',
   'logic',
   'lookup',
   'text',
