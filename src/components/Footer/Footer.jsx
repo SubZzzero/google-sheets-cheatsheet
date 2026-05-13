@@ -1,6 +1,6 @@
 import s from './Footer.module.css';
 
-export const Footer = () => {
+export const Footer = ({ ui }) => {
   return (
     <footer className={s.footer}>
       <a
@@ -8,10 +8,10 @@ export const Footer = () => {
         href="https://github.com/SubZzzero"
         target="_blank"
         rel="noopener noreferrer"
-        aria-label="Открыть GitHub-профиль SubZzzero"
+        aria-label={ui.githubAriaLabel}
       >
         <img className={s.githubIcon} src="/github.png" alt="" aria-hidden="true" />
-        <span className={s.githubText}>GitHub</span>
+        <span className={s.githubText}>{ui.githubText}</span>
       </a>
     </footer>
   );

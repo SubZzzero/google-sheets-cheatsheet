@@ -2,8 +2,9 @@ import s from './Sidebar.module.css';
 
 export const Sidebar = ({
     categories,
-    activeCategory,
+    activeCategoryId,
     isOpen,
+    ui,
     onClose,
     onSelectCategory,
 }) => {
@@ -12,22 +13,22 @@ export const Sidebar = ({
             <button
                 type="button"
                 className={`${s.backdrop} ${isOpen ? s.backdropVisible : ''}`}
-                aria-label="Закрыть панель категорий"
+                aria-label={ui.closePanelAriaLabel}
                 onClick={onClose}
             />
 
             <aside className={`${s.sidebar} ${isOpen ? s.open : ''}`}>
-                <nav aria-label="Категории формул">
+                <nav aria-label={ui.navAriaLabel}>
                     <ul className={s.list}>
                         {categories.map((category) => (
-                            <li key={category}>
+                            <li key={category.id}>
                                 <button
                                     type="button"
-                                    className={`${s.categoryButton} ${activeCategory === category ? s.active : ''
-                                        }`}
-                                    onClick={() => onSelectCategory(category)}
+                                    className={`${s.categoryButton} ${activeCategoryId === category.id ? s.active : ''
+                                         }`}
+                                    onClick={() => onSelectCategory(category.id)}
                                 >
-                                    {category}
+                                    {category.label}
                                 </button>
                             </li>
                         ))}

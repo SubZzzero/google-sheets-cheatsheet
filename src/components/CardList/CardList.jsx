@@ -1,33 +1,30 @@
 import { Card } from '../Card/Card';
 import s from './CardList.module.css';
 
-export const CardList = ({ formulas, activeCategory, onGoHome }) => {
-    const sectionTitle = `Категория: ${activeCategory}`;
+export const CardList = ({ formulas, activeCategoryLabel, ui, cardUi, onGoHome }) => {
+    const sectionTitle = `${ui.titlePrefix}: ${activeCategoryLabel}`;
 
     return (
         <section className={s.section}>
             <header className={s.head}>
                 <div>
                     <h1 className={s.title}>{sectionTitle}</h1>
-                    <p className={s.subtitle}>
-                        Выберите формулу, скопируйте синтаксис и используйте расширенный блок Example,
-                        чтобы быстро понять логику расчета.
-                    </p>
+                    <p className={s.subtitle}>{ui.subtitle}</p>
                 </div>
 
                 <button type="button" className={s.homeButton} onClick={onGoHome}>
-                    На стартовую
+                    {ui.homeButton}
                 </button>
             </header>
 
             {formulas.length ? (
                 <div className={s.grid}>
                     {formulas.map((formula) => (
-                        <Card key={formula.id} formula={formula} />
+                        <Card key={formula.id} formula={formula} ui={cardUi} />
                     ))}
                 </div>
             ) : (
-                <p className={s.emptyState}>Для этой категории формулы не найдены.</p>
+                <p className={s.emptyState}>{ui.emptyState}</p>
             )}
         </section>
     );

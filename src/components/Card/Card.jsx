@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import s from './Card.module.css';
 
-export const Card = ({ formula }) => {
+export const Card = ({ formula, ui }) => {
     const [isCopied, setCopied] = useState(false);
     const exampleDetails = formula.exampleDetails;
 
@@ -31,30 +31,30 @@ export const Card = ({ formula }) => {
             <header className={s.cardHeader}>
                 <h2 className={s.name}>{formula.name}</h2>
                 <button type="button" className={s.copyButton} onClick={handleCopy}>
-                    {isCopied ? 'COPIED' : 'COPY'}
+                    {isCopied ? ui.copied : ui.copy}
                 </button>
             </header>
 
             <div className={s.group}>
-                <p className={s.label}>Синтаксис</p>
+                <p className={s.label}>{ui.syntax}</p>
                 <code className={s.syntax}>{formula.syntax}</code>
             </div>
 
             <div className={s.group}>
-                <p className={s.label}>Что делает</p>
+                <p className={s.label}>{ui.whatItDoes}</p>
                 <p className={s.text}>{formula.description}</p>
             </div>
 
             <div className={s.group}>
-                <p className={s.label}>Example</p>
+                <p className={s.label}>{ui.example}</p>
                 <div className={s.exampleBlock}>
                     <div className={s.exampleSection}>
-                        <p className={s.exampleTitle}>Назначение</p>
+                        <p className={s.exampleTitle}>{ui.purpose}</p>
                         <p className={s.text}>{exampleDetails.purpose}</p>
                     </div>
 
                     <div className={s.exampleSection}>
-                        <p className={s.exampleTitle}>Переменные</p>
+                        <p className={s.exampleTitle}>{ui.variables}</p>
                         <ul className={s.variableList}>
                             {exampleDetails.variables.map((variable) => (
                                 <li key={variable} className={s.variableItem}>
@@ -65,13 +65,13 @@ export const Card = ({ formula }) => {
                     </div>
 
                     <div className={s.exampleSection}>
-                        <p className={s.exampleTitle}>Пример расчета</p>
+                        <p className={s.exampleTitle}>{ui.calculation}</p>
                         <code className={s.syntax}>{formula.example}</code>
                         <p className={s.text}>{exampleDetails.calculation}</p>
                     </div>
 
                     <div className={s.exampleSection}>
-                        <p className={s.exampleTitle}>Что получится</p>
+                        <p className={s.exampleTitle}>{ui.result}</p>
                         <p className={s.text}>{exampleDetails.result}</p>
                     </div>
                 </div>
